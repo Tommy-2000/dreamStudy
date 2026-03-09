@@ -30,7 +30,3 @@ npx setup-skia-web public && node skia_postinstall.js
 ```
 
 If you are running this on an Android or iOS device, the canvaskist.wasm file is ignored and native rendering is used instead.
-
-```bash
-
-```
