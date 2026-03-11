@@ -1,6 +1,6 @@
 # dreamStudy - GCSE and A Level Revision Platform (Web and App) Built with Neurodiversity
 
-## Features
+## Planned Features
 
 * Accessibility tools:
   * Built-in AAC communicator.
