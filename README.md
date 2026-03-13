@@ -1,4 +1,4 @@
-# dreamStudy - GCSE and A Level Revision Platform (Web and App) Built with Neurodiversity
+# dreamStudy - GCSE and A Level Revision Platform (Web and App) Built To Support SEND students
 
 ## Planned Features
 
