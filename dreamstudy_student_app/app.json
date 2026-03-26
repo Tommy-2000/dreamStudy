@@ -51,7 +51,8 @@
           "organization": "dreamdivers"
         }
       ],
-      "@sentry/react-native"
+      "@sentry/react-native",
+      "expo-background-task"
     ],
     "experiments": {
       "typedRoutes": true,

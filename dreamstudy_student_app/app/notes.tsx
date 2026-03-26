@@ -1,20 +1,20 @@
 import { Image } from 'expo-image';
-import { ActivityIndicator } from 'react-native';
 
 import { Card } from '@/components/ui/react/cards/card';
-import ParallaxScrollCard from '@/components/ui/react/cards/parallax_scroll_card';
-import { TextCard } from '@/components/ui/react/cards/text_card';
-import { RenderSkia } from '@/components/ui/skia/render-skia';
-import { notesScreenStyles } from '@/styles/screen_styles';
+import ParallaxScrollCard from '@/components/ui/react/cards/parallaxScrollCard';
+import { TextCard } from '@/components/ui/react/cards/textCard';
+import { RenderSkia } from '@/components/ui/skia/renderSkia';
+import { notesScreenStyles } from '@/utils/appStyles';
 import React from 'react';
+import { ActivityIndicator } from 'react-native';
 
-// On web, any Skia components have to wait before the wasm file has loaded
+// On web, any Skia components have to wait before the wasm file has loaded to properly render
 // const SkiaIridescent = React.lazy(
-//   () => import('@/components/ui/skia/skia_iridescent')
+//   () => import('@/components/ui/skia/skiaIridescent')
 // );
 
 const SkiaNotepad = React.lazy(
-  () => import('@/components/ui/skia/skia_notepad')
+  () => import('@/components/ui/skia/skiaNotepad')
 );
 
 export default function NotesScreen() {

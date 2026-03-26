@@ -1,16 +1,12 @@
 import { StyleSheet } from 'react-native-unistyles';
 
-export const appValues = {
-  parallaxHeaderHeight: 250
-};
-
 const lightTheme = {
   colors: {
     background: '#FCFAF8',
-    foreground: '#EDEAE6',
-    typography: '#1B140C',
+    foreground: '#adfbff',
+    typography: '#0c1b1a',
     dimmed: '#ECE8E4',
-    tint: '#9A734C',
+    tint: '#2a5452',
     activeTint: '#1B140C',
     link: '#1E3799',
     accents: {
@@ -26,11 +22,11 @@ const lightTheme = {
 
 const darkTheme = {
   colors: {
-    background: '#221A11',
-    foreground: '#332618',
+    background: '#112022',
+    foreground: '#183333',
     typography: '#FFFFFF',
     dimmed: '#A8A198',
-    tint: '#C9AD92',
+    tint: '#92a7c9',
     activeTint: '#FFFFFF',
     link: '#0C2461',
     accents: {

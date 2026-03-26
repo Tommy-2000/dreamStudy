@@ -3,29 +3,35 @@ import { Drawer } from 'expo-router/drawer';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
 
+import {
+  drawerScreenOptions,
+  RootDrawer,
+  RootTabs,
+  tabScreenOptions
+} from '@/utils/appStyles';
 import * as Sentry from '@sentry/react-native';
 import { Tabs } from 'expo-router';
 import { FiberProvider } from 'its-fine';
 import React from 'react';
 import { Platform } from 'react-native';
-import { useUnistyles } from 'react-native-unistyles';
 
 // Initialise the Sentry SDK for performance and error logging
 Sentry.init({
   dsn: 'https://c73380ff81478f5ab63ff2684293a3e7@o4510828122996736.ingest.de.sentry.io/4510828124962896',
 
   // Adds more context data to events (IP address, cookies, user, etc.)
-  sendDefaultPii: false, // ONLY SET TO TRUE IF THE APP IS IN A TESTING ENVIRONMENT!
+  sendDefaultPii: false, // ONLY SET THIS TO TRUE IF THE APP IS IN A TESTING ENVIRONMENT!
 
   // Enable Logs
   enableLogs: false,
+  enableCaptureFailedRequests: false,
+  enableAppHangTracking: false,
+  enableAppStartTracking: false,
   integrations: [Sentry.feedbackIntegration()]
 });
 
 // Wrap the root of the app with the Sentry SDK
 export default Sentry.wrap(function RootLayout() {
-  const { theme } = useUnistyles();
-
   if (Platform.OS === 'web') {
     // If this app is running on Android or iOS, show the drawer layout
     // Otherwise if the app is running on Web, show the Tabs layout
@@ -33,22 +39,7 @@ export default Sentry.wrap(function RootLayout() {
       // Wrap the root layout with FibreProvider to allow for context to be shared between Skia components
       <FiberProvider>
         <React.Fragment>
-          <Tabs
-            screenOptions={{
-              tabBarPosition: 'right',
-              tabBarActiveTintColor: theme.colors.activeTint,
-              tabBarInactiveTintColor: theme.colors.tint,
-              sceneStyle: {
-                backgroundColor: theme.colors.background
-              },
-              tabBarStyle: {
-                backgroundColor: theme.colors.foreground
-              },
-              tabBarIconStyle: {
-                color: theme.colors.foreground
-              },
-              headerShown: false
-            }}>
+          <RootTabs screenOptions={tabScreenOptions}>
             <Tabs.Screen
               name="index"
               options={{
@@ -66,7 +57,7 @@ export default Sentry.wrap(function RootLayout() {
               }}
             />
             <Tabs.Screen
-              name="study"
+              name="revision"
               options={{
                 tabBarIcon: ({ focused, color, size }) => {
                   if (focused) {
@@ -77,8 +68,8 @@ export default Sentry.wrap(function RootLayout() {
                     );
                   }
                 },
-                tabBarLabel: 'Study',
-                title: 'Study'
+                tabBarLabel: 'Revision',
+                title: 'Revision'
               }}
             />
             <Tabs.Screen
@@ -153,7 +144,7 @@ export default Sentry.wrap(function RootLayout() {
                 title: 'User'
               }}
             />
-          </Tabs>
+          </RootTabs>
           <StatusBar style="auto" />
         </React.Fragment>
       </FiberProvider>
@@ -163,20 +154,7 @@ export default Sentry.wrap(function RootLayout() {
   return (
     <FiberProvider>
       <React.Fragment>
-        <Drawer
-          screenOptions={{
-            drawerPosition: 'right',
-            drawerActiveTintColor: theme.colors.activeTint,
-            drawerInactiveTintColor: theme.colors.tint,
-            sceneStyle: {
-              backgroundColor: theme.colors.background
-            },
-            drawerStyle: {
-              backgroundColor: theme.colors.foreground
-            },
-            drawerType: 'front',
-            drawerStatusBarAnimation: 'fade'
-          }}>
+        <RootDrawer screenOptions={drawerScreenOptions}>
           <Drawer.Screen
             name="index"
             options={{
@@ -194,9 +172,9 @@ export default Sentry.wrap(function RootLayout() {
             }}
           />
           <Drawer.Screen
-            name="study"
+            name="revision"
             options={{
-              drawerLabel: 'Study',
+              drawerLabel: 'Revision',
               drawerIcon: ({ focused, color, size }) => {
                 if (focused) {
                   return <Ionicons name="book" size={size} color={color} />;
@@ -206,7 +184,7 @@ export default Sentry.wrap(function RootLayout() {
                   );
                 }
               },
-              title: 'Study'
+              title: 'Revision'
             }}
           />
           <Drawer.Screen
@@ -257,7 +235,7 @@ export default Sentry.wrap(function RootLayout() {
               title: 'Account'
             }}
           />
-        </Drawer>
+        </RootDrawer>
         <StatusBar style="auto" />
       </React.Fragment>
     </FiberProvider>

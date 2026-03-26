@@ -1,12 +1,13 @@
 import * as Sentry from '@sentry/react-native';
 import { Image } from 'expo-image';
-import { Button, Platform } from 'react-native';
+import { Platform } from 'react-native';
 
+import { MaterialButton } from '@/components/ui/react/buttons/materialButton';
 import { Card } from '@/components/ui/react/cards/card';
-import ParallaxScrollCard from '@/components/ui/react/cards/parallax_scroll_card';
-import { TextCard } from '@/components/ui/react/cards/text_card';
-import { HelloWave } from '@/components/ui/react/hello-wave';
-import { homeScreenStyles } from '@/styles/screen_styles';
+import ParallaxScrollCard from '@/components/ui/react/cards/parallaxScrollCard';
+import { TextCard } from '@/components/ui/react/cards/textCard';
+import { HelloWave } from '@/components/ui/react/helloWave';
+import { buttonStyles, homeScreenStyles } from '@/utils/appStyles';
 import { useUnistyles } from 'react-native-unistyles';
 
 export default function HomeScreen() {
@@ -14,6 +15,7 @@ export default function HomeScreen() {
 
   return (
     <ParallaxScrollCard
+      headerBackgroundColor={{}}
       headerImage={
         <Image
           source={require('@/assets/images/partial-react-logo.png')}
@@ -55,8 +57,9 @@ export default function HomeScreen() {
         </TextCard>
       </Card>
       <Card>
-        <Button
+        <MaterialButton
           title="Send a test error to Sentry"
+          style={buttonStyles.primaryButton}
           onPress={() => {
             Sentry.captureException(new Error('First error'));
           }}

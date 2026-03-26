@@ -49,6 +49,9 @@ app-example
 /ios
 /android
 
+# dockerfile
+Dockerfile
+
 # Env security tokens -- DO NOT COMMIT THIS!
 .env.local
 

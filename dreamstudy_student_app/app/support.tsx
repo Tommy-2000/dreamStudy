@@ -1,14 +1,13 @@
 import { Card } from '@/components/ui/react/cards/card';
-import GridCard from '@/components/ui/react/cards/grid_card';
-import ParallaxScrollCard from '@/components/ui/react/cards/parallax_scroll_card';
-import { TextCard } from '@/components/ui/react/cards/text_card';
-import { supportScreenStyles } from '@/styles/screen_styles';
+import ParallaxScrollCard from '@/components/ui/react/cards/parallaxScrollCard';
+import { TextCard } from '@/components/ui/react/cards/textCard';
+import { supportScreenStyles } from '@/utils/appStyles';
 import { Image } from 'expo-image';
 
 export default function SupportScreen() {
   return (
     <ParallaxScrollCard
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
+      headerBackgroundColor={{}}
       headerImage={
         <Image
           source={require('@/assets/images/partial-react-logo.png')}
@@ -18,8 +17,9 @@ export default function SupportScreen() {
       <Card style={supportScreenStyles.titleContainer}>
         <TextCard type="title">Support</TextCard>
       </Card>
-      <TextCard>This app includes a draggable grid.</TextCard>
-      <GridCard />
+      <TextCard>
+        This app includes example code to help you get started.
+      </TextCard>
     </ParallaxScrollCard>
   );
 }

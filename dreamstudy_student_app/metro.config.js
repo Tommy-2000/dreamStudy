@@ -1,9 +1,13 @@
+const { getSentryExpoConfig } = require('@sentry/react-native/metro');
 const {
-  getSentryExpoConfig
-} = require("@sentry/react-native/metro");
+  wrapWithReanimatedMetroConfig
+} = require('react-native-reanimated/metro-config');
 
-const expoConfig = getSentryExpoConfig(__dirname); // Returns the ExpoConfig with Sentry integrated
+// Returns the ExpoConfig with Sentry integrated
+const expoConfig = getSentryExpoConfig(__dirname);
 
-expoConfig.resolver.assetExts.push('wasm'); // Adds support for `.wasm` so Skia can render on Web
+// Adds support for `.wasm` so Skia can render on Web
+expoConfig.resolver.assetExts.push('wasm');
 
-module.exports = expoConfig; // Export the expoConfig
+// Export the expoConfig wrapped with the ReanimatedMetroConfig for Reanimated Logging
+module.exports = wrapWithReanimatedMetroConfig(expoConfig);
