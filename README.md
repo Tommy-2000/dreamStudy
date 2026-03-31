@@ -44,6 +44,8 @@ npx setup-skia-web public && node skia_postinstall.js
 
 If you are running this on an Android or iOS device, the canvaskist.wasm file is ignored and native rendering is used instead.
 
+## Contribute
+
 If you have any suggestions or further improvements you would like to make to this project, please feel free to send me a PR with the changes you recommend to dreamdev.tommy.2000@outlook.com. You are also more than welcome to make a fork of this repo if you want to make your changes there. Thanks! 😀👍
 
 
