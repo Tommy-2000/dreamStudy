@@ -6,3 +6,4 @@ export const checkScreenReader = async (): Promise<boolean> => {
   appLogger.debug('Screen Reader is set to ' + screenReaderIsEnabled);
   return screenReaderIsEnabled;
 };
+

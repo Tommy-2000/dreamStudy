@@ -3,7 +3,7 @@ import { Image } from 'expo-image';
 import { Platform } from 'react-native';
 
 import { MaterialButton } from '@/components/ui/react/buttons/materialButton';
-import { Card } from '@/components/ui/react/cards/card';
+import { Card } from '@/components/ui/react/card';
 import ParallaxScrollCard from '@/components/ui/react/cards/parallaxScrollCard';
 import { TextCard } from '@/components/ui/react/cards/textCard';
 import { HelloWave } from '@/components/ui/react/helloWave';

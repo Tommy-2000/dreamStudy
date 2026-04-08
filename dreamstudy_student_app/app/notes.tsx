@@ -1,6 +1,6 @@
 import { Image } from 'expo-image';
 
-import { Card } from '@/components/ui/react/cards/card';
+import { Card } from '@/components/ui/react/card';
 import ParallaxScrollCard from '@/components/ui/react/cards/parallaxScrollCard';
 import { TextCard } from '@/components/ui/react/cards/textCard';
 import { RenderSkia } from '@/components/ui/skia/renderSkia';

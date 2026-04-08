@@ -1,5 +1,5 @@
 import { GestureResponderEvent, TouchableOpacity } from 'react-native';
-import { Card, CardProps } from './card';
+import { Card, CardProps } from '../card';
 
 export type TouchableCardProps = {
   onPress: ((event: GestureResponderEvent) => void) | undefined;

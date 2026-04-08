@@ -2,7 +2,7 @@ import { cardStyles } from '@/utils/appStyles';
 import { RevisionContent } from '@/utils/types/zod/models';
 import { memo, PropsWithChildren } from 'react';
 import Sortable from 'react-native-sortables';
-import { Card } from './card';
+import { Card } from '../card';
 import { TextCard } from './textCard';
 
 export type RevisionCardProps = {

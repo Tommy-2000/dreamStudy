@@ -2,7 +2,7 @@ import { PropsWithChildren, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
-import { Card } from '@/components/ui/react/cards/card';
+import { Card } from '@/components/ui/react/card';
 import { TextCard } from '@/components/ui/react/cards/textCard';
 import { IconSymbol } from '@/components/ui/react/iconSymbol';
 

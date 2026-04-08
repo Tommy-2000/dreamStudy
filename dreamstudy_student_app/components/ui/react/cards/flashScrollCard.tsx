@@ -1,7 +1,7 @@
 import { cardStyles } from '@/unistyles';
 import { FlashList } from '@shopify/flash-list';
 import { StyleProp, ViewProps } from 'react-native';
-import { Card } from './card';
+import { Card } from '../card';
 import { TextCard } from './textCard';
 
 export type FlashListProps = {

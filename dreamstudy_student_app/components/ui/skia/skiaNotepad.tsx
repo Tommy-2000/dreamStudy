@@ -1,17 +1,15 @@
-import { Canvas, Group, Rect } from '@shopify/react-native-skia';
+import { Group, Rect } from '@shopify/react-native-skia';
 import React from 'react';
 import { useWindowDimensions } from 'react-native';
 import {
-    Gesture,
-    GestureDetector,
-    GestureHandlerRootView
+  Gesture
 } from 'react-native-gesture-handler';
 import {
-    useDerivedValue,
-    useSharedValue,
-    withDecay
+  useDerivedValue,
+  useSharedValue,
+  withDecay
 } from 'react-native-reanimated';
-import { Card } from '../react/cards/card';
+import { SkiaGestureCard } from './skiaGestureCard';
 
 export default function SkiaNotepad() {
   const { width } = useWindowDimensions();
@@ -44,16 +42,10 @@ export default function SkiaNotepad() {
   });
 
   return (
-    <Card>
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <GestureDetector gesture={panGesture}>
-          <Canvas style={{ flex: 2 }}>
-            <Group transform={padTransform}>
-              <Rect x={0} y={0} width={256} height={256} color="red" />
-            </Group>
-          </Canvas>
-        </GestureDetector>
-      </GestureHandlerRootView>
-    </Card>
+    <SkiaGestureCard gesture={panGesture}>
+      <Group transform={padTransform}>
+        <Rect x={0} y={0} width={256} height={256} color="red" />
+      </Group>
+    </SkiaGestureCard>
   );
 }

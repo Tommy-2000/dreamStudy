@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import Animated, { useSharedValue } from 'react-native-reanimated';
-import { Card } from './card';
+import { Card } from '../card';
 
 export const NotePreviewCard = ({ item }: { item: { id: number } }) => {
   const animatedValue = useSharedValue(0);

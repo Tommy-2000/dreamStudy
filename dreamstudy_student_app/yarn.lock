@@ -1654,14 +1654,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+<<<<<<< Updated upstream
 "@expo/vector-icons@npm:^15.0.3":
   version: 15.0.3
   resolution: "@expo/vector-icons@npm:15.0.3"
+=======
+"@expo/vector-icons@npm:^15.0.2":
+  version: 15.1.1
+  resolution: "@expo/vector-icons@npm:15.1.1"
+>>>>>>> Stashed changes
   peerDependencies:
     expo-font: ">=14.0.4"
     react: "*"
     react-native: "*"
+<<<<<<< Updated upstream
   checksum: 10c0/f33274dede267c713618512969afdee28e47e97ba8a7ee7e1d0ab18b417683ace7c4a1b79152d6ec2d254420a23a685582fd956f6cd83a2120514d9efbab1109
+=======
+  checksum: 10c0/fdd50c90484934204b90d345904fa69ca788a5de704d62b3cb580c52aa4cf4bffe1c05c509d043cf2b6842f1bdad6b78585524f3c6ae5f77e36385d83c0aa577
+>>>>>>> Stashed changes
   languageName: node
   linkType: hard
 
@@ -5588,8 +5598,12 @@ __metadata:
   resolution: "dreamstudy@workspace:."
   dependencies:
     "@expo/html-elements": "npm:0.10.1"
+<<<<<<< Updated upstream
     "@expo/metro-runtime": "npm:~6.1.2"
     "@expo/vector-icons": "npm:^15.0.3"
+=======
+    "@expo/metro-runtime": "npm:~55.0.6"
+>>>>>>> Stashed changes
     "@marceloterreiro/flash-calendar": "npm:^2.0.0"
     "@react-native-ama/core": "npm:^1.2.1"
     "@react-navigation/bottom-tabs": "npm:^7.4.0"
