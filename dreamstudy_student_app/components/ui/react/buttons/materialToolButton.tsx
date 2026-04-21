@@ -1,20 +1,16 @@
-import { GestureResponderEvent, TouchableOpacity } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { Card } from '../card';
 import { TextCard } from '../cards/textCard';
+import { MaterialButtonProps } from './materialButton';
 
-export interface MaterialButtonProps {
-  onPress: ((event: GestureResponderEvent) => void) | undefined;
-  style: {};
-  title?: string;
-  accessibilityHint: string;
-}
+export interface MaterialToolButtonProps extends MaterialButtonProps {}
 
-export function MaterialButton({
+export function MaterialToolButton({
   onPress,
   style,
   title,
   accessibilityHint
-}: MaterialButtonProps) {
+}: MaterialToolButtonProps) {
   return (
     <TouchableOpacity
       onPress={onPress}

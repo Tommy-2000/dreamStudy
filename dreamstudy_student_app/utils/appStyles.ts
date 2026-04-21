@@ -1,3 +1,4 @@
+import type { CalendarTheme } from '@marceloterreiro/flash-calendar';
 import { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
 import { DrawerNavigationOptions } from '@react-navigation/drawer';
 import { HeaderOptions } from '@react-navigation/elements';
@@ -6,6 +7,7 @@ import Drawer from 'expo-router/drawer';
 import { Platform } from 'react-native';
 import { StyleSheet, withUnistyles } from 'react-native-unistyles';
 import { appValues } from './appConstants';
+import { calendarCardTokenColours as calendarTokenColours } from './appTokenColours';
 
 // Screen Styling
 
@@ -264,8 +266,62 @@ export const buttonStyles = StyleSheet.create(theme => ({
     backgroundColor: theme.colors.background,
     borderRadius: 10,
     elevation: 10
+  },
+  iconButton: {
+    backgroundColor: theme.colors.background,
+    borderRadius: 10,
+    elevation: 10
   }
 }));
+
+export const calendarTheme: CalendarTheme = {
+  rowMonth: {
+    container: {
+      backgroundColor: calendarTokenColours.colours.accent,
+      height: 40
+    },
+    content: {
+      color: calendarTokenColours.colours.content.inverse.primary,
+      fontSize: 17,
+      width: 200,
+      textAlign: 'center'
+    }
+  },
+  itemWeekName: { content: { color: calendarTokenColours.colours.accent } },
+  itemDay: {
+    base: () => ({
+      container: {
+        padding: 0,
+        borderRadius: 0
+      }
+    }),
+    today: () => ({
+      container: {
+        borderWidth: 2,
+        borderColor: calendarTokenColours.colours.secondary
+      }
+    }),
+    idle: ({ isDifferentMonth }) => ({
+      content: isDifferentMonth
+        ? {
+            color: calendarTokenColours.colours.content.disabled
+          }
+        : undefined
+    }),
+    active: () => ({
+      container: {
+        backgroundColor: calendarTokenColours.colours.accent,
+        borderTopLeftRadius: 0,
+        borderTopRightRadius: 0,
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0
+      },
+      content: {
+        color: calendarTokenColours.colours.content.inverse.primary
+      }
+    })
+  }
+};
 
 export const imageStyles = StyleSheet.create({
   smallImage: {

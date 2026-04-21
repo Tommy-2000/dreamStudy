@@ -1,5 +1,5 @@
-export const CalendarCardTokens = {
-  colors: {
+export const calendarCardTokenColours = {
+  colours: {
     background: '#8cd5ff',
     accent: '#fff293',
     secondary: '#8aff88',

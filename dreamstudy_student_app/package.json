@@ -19,6 +19,7 @@
   "dependencies": {
     "@expo/html-elements": "0.10.1",
     "@expo/metro-runtime": "~6.1.2",
+    "@expo/ui": "~0.2.0-beta.9",
     "@expo/vector-icons": "^15.0.3",
     "@marceloterreiro/flash-calendar": "^2.0.0",
     "@react-native-ama/core": "^1.2.1",
@@ -54,6 +55,7 @@
     "expo-web-browser": "~15.0.10",
     "its-fine": "^2.0.0",
     "lucide-react-native": "^0.510.0",
+    "pressto": "^0.6.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-native": "0.81.5",

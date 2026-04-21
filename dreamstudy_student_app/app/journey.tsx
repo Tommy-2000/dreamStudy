@@ -6,10 +6,40 @@ import ParallaxScrollCard from '@/components/ui/react/cards/parallaxScrollCard';
 import { TextCard } from '@/components/ui/react/cards/textCard';
 import { ExternalLinkCard } from '@/components/ui/react/externalLink';
 import { IconSymbol } from '@/components/ui/react/iconSymbol';
-import { Fonts, journeyScreenStyles } from '@/utils/appStyles';
-import { Platform } from 'react-native';
+import { StudentCalendar } from '@/components/ui/react/studentCalendar/studentCalendar';
+import { journeyScreenStyles } from '@/utils/appStyles';
+import {
+  CalendarOnDayPress,
+  fromDateId,
+  toDateId
+} from '@marceloterreiro/flash-calendar';
+import { add, sub } from 'date-fns';
+import { useCallback, useState } from 'react';
 
 export default function JourneyScreen() {
+  const [currentCalendarMonth, setCurrentCalendarMonth] = useState(new Date());
+
+  const [selectedDate, setSelectedDate] = useState<Date>(
+    sub(new Date(), { days: 1 })
+  );
+
+  const [isCalendarPickerVisible, setIsCalendarPickerVisible] = useState(true);
+
+  const handlePastMonthPress = useCallback(() => {
+    setCurrentCalendarMonth(sub(currentCalendarMonth, { months: 1 }));
+  }, [currentCalendarMonth]);
+
+  const handleNextMonthPress = useCallback(() => {
+    setCurrentCalendarMonth(add(currentCalendarMonth, { months: 1 }));
+  }, [currentCalendarMonth]);
+
+  const handleDayPickerPress = useCallback<CalendarOnDayPress>(dateId => {
+    setCurrentCalendarMonth(fromDateId(dateId));
+    setSelectedDate(fromDateId(dateId));
+    setIsCalendarPickerVisible(true);
+    return;
+  }, []);
+
   return (
     <ParallaxScrollCard
       headerBackgroundColor={{}}
@@ -64,39 +94,14 @@ export default function JourneyScreen() {
           <TextCard type="link">Learn more</TextCard>
         </ExternalLinkCard>
       </CollapsibleCard>
-      <CollapsibleCard title="Light and dark mode components">
-        <TextCard>
-          This template has light and dark mode support. The{' '}
-          <TextCard type="defaultSemiBold">useColorScheme()</TextCard> hook lets
-          you inspect what the user&apos;s current color scheme is, and so you
-          can adjust UI colors accordingly.
-        </TextCard>
-        <ExternalLinkCard href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <TextCard type="link">Learn more</TextCard>
-        </ExternalLinkCard>
-      </CollapsibleCard>
-      <CollapsibleCard title="Animations">
-        <TextCard>
-          This template includes an example of an animated component. The{' '}
-          <TextCard type="defaultSemiBold">components/HelloWave.tsx</TextCard>{' '}
-          component uses the powerful{' '}
-          <TextCard type="defaultSemiBold" style={{ fontFamily: Fonts.mono }}>
-            react-native-reanimated
-          </TextCard>{' '}
-          library to create a waving hand animation.
-        </TextCard>
-        {Platform.select({
-          ios: (
-            <TextCard>
-              The{' '}
-              <TextCard type="defaultSemiBold">
-                components/ParallaxScrollView.tsx
-              </TextCard>{' '}
-              component provides a parallax effect for the header image.
-            </TextCard>
-          )
-        })}
-      </CollapsibleCard>
+      <Card>
+        <StudentCalendar
+          calendarMonthId={toDateId(currentCalendarMonth)}
+          onPastMonthPress={handlePastMonthPress}
+          onNextMonthPress={handleNextMonthPress}
+          onCalendarDayPress={handleDayPickerPress}
+        />
+      </Card>
     </ParallaxScrollCard>
   );
 }

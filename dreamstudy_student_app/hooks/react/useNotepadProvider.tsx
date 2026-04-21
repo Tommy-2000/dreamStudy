@@ -1,7 +1,7 @@
 import {
-    NotepadContextType,
-    NotepadMenu,
-    NotepadState
+  NotepadContextType,
+  NotepadMenu,
+  NotepadState
 } from '@/utils/types/notepadTypes';
 import React, { PropsWithChildren, useMemo } from 'react';
 
@@ -38,10 +38,10 @@ const createNotepadProviderValue = (): NotepadContextType => {
 
 export const useNotepadProvider = () => {
   const notepadContext = useMemo(() => createNotepadProviderValue(), []);
-  const notepadProviderComponent = ({ children }: PropsWithChildren) => (
+  // Return the value of the provider as a component
+  return ({ children }: PropsWithChildren) => (
     <NotepadContext.Provider value={notepadContext}>
       {children}
     </NotepadContext.Provider>
   );
-  return notepadProviderComponent;
 };
