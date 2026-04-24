@@ -6,40 +6,9 @@ import ParallaxScrollCard from '@/components/ui/react/cards/parallaxScrollCard';
 import { TextCard } from '@/components/ui/react/cards/textCard';
 import { ExternalLinkCard } from '@/components/ui/react/externalLink';
 import { IconSymbol } from '@/components/ui/react/iconSymbol';
-import { StudentCalendar } from '@/components/ui/react/studentCalendar/studentCalendar';
 import { journeyScreenStyles } from '@/utils/appStyles';
-import {
-  CalendarOnDayPress,
-  fromDateId,
-  toDateId
-} from '@marceloterreiro/flash-calendar';
-import { add, sub } from 'date-fns';
-import { useCallback, useState } from 'react';
 
 export default function JourneyScreen() {
-  const [currentCalendarMonth, setCurrentCalendarMonth] = useState(new Date());
-
-  const [selectedDate, setSelectedDate] = useState<Date>(
-    sub(new Date(), { days: 1 })
-  );
-
-  const [isCalendarPickerVisible, setIsCalendarPickerVisible] = useState(true);
-
-  const handlePastMonthPress = useCallback(() => {
-    setCurrentCalendarMonth(sub(currentCalendarMonth, { months: 1 }));
-  }, [currentCalendarMonth]);
-
-  const handleNextMonthPress = useCallback(() => {
-    setCurrentCalendarMonth(add(currentCalendarMonth, { months: 1 }));
-  }, [currentCalendarMonth]);
-
-  const handleDayPickerPress = useCallback<CalendarOnDayPress>(dateId => {
-    setCurrentCalendarMonth(fromDateId(dateId));
-    setSelectedDate(fromDateId(dateId));
-    setIsCalendarPickerVisible(true);
-    return;
-  }, []);
-
   return (
     <ParallaxScrollCard
       headerBackgroundColor={{}}
@@ -94,14 +63,6 @@ export default function JourneyScreen() {
           <TextCard type="link">Learn more</TextCard>
         </ExternalLinkCard>
       </CollapsibleCard>
-      <Card>
-        <StudentCalendar
-          calendarMonthId={toDateId(currentCalendarMonth)}
-          onPastMonthPress={handlePastMonthPress}
-          onNextMonthPress={handleNextMonthPress}
-          onCalendarDayPress={handleDayPickerPress}
-        />
-      </Card>
     </ParallaxScrollCard>
   );
 }

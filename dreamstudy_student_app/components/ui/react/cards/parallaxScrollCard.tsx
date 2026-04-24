@@ -1,9 +1,9 @@
 import type { PropsWithChildren, ReactElement } from 'react';
 import Animated, {
-    interpolate,
-    useAnimatedRef,
-    useAnimatedStyle,
-    useScrollOffset
+  interpolate,
+  useAnimatedRef,
+  useAnimatedStyle,
+  useScrollOffset
 } from 'react-native-reanimated';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 

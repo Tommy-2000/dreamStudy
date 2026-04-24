@@ -336,6 +336,7 @@ export interface MaterialIconButtonProps extends MaterialButtonProps {
     | 'versions'
     | 'workflow'
     | 'x-circle-fill';
+  iconSize: number;
 }
 
 export function MaterialIconButton({
@@ -343,7 +344,8 @@ export function MaterialIconButton({
   style,
   title,
   accessibilityHint,
-  iconName
+  iconName,
+  iconSize
 }: MaterialIconButtonProps) {
   return (
     <TouchableOpacity
@@ -353,7 +355,7 @@ export function MaterialIconButton({
       accessibilityLabel={title}
       accessibilityRole="button">
       <TextCard>
-        <Octicons name={iconName} />
+        <Octicons name={iconName} size={iconSize} />
         {title}
       </TextCard>
     </TouchableOpacity>

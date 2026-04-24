@@ -2,6 +2,7 @@
   "singleQuote": true,
   "trailingComma": "none",
   "arrowParens": "avoid",
+  "objectWrap": "preserve",
   "proseWrap": "preserve",
   "quoteProps": "as-needed",
   "bracketSameLine": true,

@@ -1,27 +1,20 @@
 import * as Sentry from '@sentry/react-native';
-import { Image } from 'expo-image';
 import { Platform } from 'react-native';
 
 import { MaterialButton } from '@/components/ui/react/buttons/materialButton';
 import { Card } from '@/components/ui/react/card';
-import ParallaxScrollCard from '@/components/ui/react/cards/parallaxScrollCard';
+import ScrollCard from '@/components/ui/react/cards/scrollCard';
 import { TextCard } from '@/components/ui/react/cards/textCard';
 import { HelloWave } from '@/components/ui/react/helloWave';
 import { buttonStyles, homeScreenStyles } from '@/utils/appStyles';
 import { useUnistyles } from 'react-native-unistyles';
 
+const SENTRY_TEST_BUTTON = 'Send a test error to Sentry';
 export default function HomeScreen() {
   const { theme } = useUnistyles();
 
   return (
-    <ParallaxScrollCard
-      headerBackgroundColor={{}}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={homeScreenStyles.reactLogo}
-        />
-      }>
+    <ScrollCard>
       <Card style={homeScreenStyles.titleStyle}>
         <TextCard type="title">Welcome Student Name!</TextCard>
         <HelloWave />
@@ -58,13 +51,14 @@ export default function HomeScreen() {
       </Card>
       <Card>
         <MaterialButton
-          title="Send a test error to Sentry"
-          style={buttonStyles.primaryButton}
+          title={SENTRY_TEST_BUTTON}
+          style={buttonStyles.accentButton}
+          accessibilityHint={SENTRY_TEST_BUTTON}
           onPress={() => {
-            Sentry.captureException(new Error('First error'));
+            Sentry.captureException(new Error('Test Error'));
           }}
         />
       </Card>
-    </ParallaxScrollCard>
+    </ScrollCard>
   );
 }

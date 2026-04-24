@@ -1,20 +1,22 @@
-import { buttonStyles, calendarTheme } from '@/utils/appStyles';
+import { buttonStyles, calendarTheme, cardStyles } from '@/utils/appStyles';
 import {
   Calendar,
   useCalendar,
-  type CalendarProps
+  type CalendarProps as FlashCalendarProps
 } from '@marceloterreiro/flash-calendar';
 import { memo, useMemo } from 'react';
 import { MaterialIconButton } from '../buttons/materialIconButton';
 import { Card } from '../card';
 import { TextCard } from '../cards/textCard';
 
-export interface StudentCalendarProps extends CalendarProps {
+export interface CalendarCardProps extends FlashCalendarProps {
   onPastMonthPress: () => void;
   onNextMonthPress: () => void;
 }
 
-export const StudentCalendar = memo((calendarProps: StudentCalendarProps) => {
+const ICON_SIZE = 20;
+const DAY_HEIGHT = 75;
+export const CalendarCard = memo((calendarProps: CalendarCardProps) => {
   const { calendarRowMonth, weekDaysList, weeksList } =
     useCalendar(calendarProps);
 
@@ -23,7 +25,7 @@ export const StudentCalendar = memo((calendarProps: StudentCalendarProps) => {
   }, [weeksList]);
 
   return (
-    <Card>
+    <Card style={cardStyles.calendarContainer}>
       <Calendar.VStack>
         <Calendar.HStack
           alignItems="center"
@@ -31,6 +33,7 @@ export const StudentCalendar = memo((calendarProps: StudentCalendarProps) => {
           width="100%">
           <MaterialIconButton
             iconName="arrow-left"
+            iconSize={ICON_SIZE}
             onPress={() => {}}
             accessibilityHint="Arrow Left"
             style={buttonStyles.iconButton}
@@ -38,13 +41,14 @@ export const StudentCalendar = memo((calendarProps: StudentCalendarProps) => {
           <TextCard>{calendarRowMonth}</TextCard>
           <MaterialIconButton
             iconName="arrow-right"
+            iconSize={ICON_SIZE}
             onPress={() => {}}
             accessibilityHint="Arrow Right"
             style={buttonStyles.iconButton}
           />
         </Calendar.HStack>
 
-        <Calendar.Row.Week spacing={4}>
+        <Calendar.Row.Week spacing={16}>
           {weekDaysList.map((day, i) => (
             <Calendar.Item.WeekName
               height={25}
@@ -59,12 +63,12 @@ export const StudentCalendar = memo((calendarProps: StudentCalendarProps) => {
           <Calendar.Row.Week key={i}>
             {week.map((day, i) => (
               <Calendar.Item.Day.Container
-                dayHeight={25}
-                daySpacing={4}
+                dayHeight={DAY_HEIGHT}
+                daySpacing={16}
                 isStartOfWeek={day.isStartOfWeek}
                 key={i}>
                 <Calendar.Item.Day
-                  height={25}
+                  height={DAY_HEIGHT}
                   metadata={day}
                   onPress={calendarProps.onCalendarDayPress}
                   theme={calendarTheme.itemDay}>
