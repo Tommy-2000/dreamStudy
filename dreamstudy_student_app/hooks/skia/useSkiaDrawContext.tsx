@@ -5,8 +5,11 @@ import { SkiaDrawContext } from './useSkiaDrawProvider';
 export const useSkiaDrawContext = (): SkiaDrawContextType => {
   const skiaDrawingContext = useContext(SkiaDrawContext);
 
-  if (skiaDrawingContext === null) {
-    throw Error('SkiaDrawingContext is missing, please try again later');
+  // The context object obtained from the hook SHOULD NOT be null or undefined
+  if (skiaDrawingContext === null || undefined) {
+    throw Error(
+      'SkiaDrawingContext is missing or undefined, please try again later'
+    );
   }
-  return skiaDrawingContext!;
+  return skiaDrawingContext;
 };

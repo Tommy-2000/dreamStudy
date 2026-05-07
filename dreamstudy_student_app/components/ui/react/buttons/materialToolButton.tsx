@@ -1,20 +1,16 @@
-import { AnimatedPressableOptions, PressableScale } from 'pressto';
+import { PressableScale } from 'pressto';
 import { Card } from '../card';
 import { TextCard } from '../cards/textCard';
+import { MaterialButtonProps } from './materialButton';
 
-export interface MaterialButtonProps {
-  onPress: ((options: AnimatedPressableOptions) => void) | undefined;
-  style: {};
-  title?: string;
-  accessibilityHint: string;
-}
+export interface MaterialToolButtonProps extends MaterialButtonProps {}
 
-export function MaterialButton({
+export function MaterialToolButton({
   onPress,
   style,
   title,
   accessibilityHint
-}: MaterialButtonProps) {
+}: MaterialToolButtonProps) {
   return (
     <PressableScale
       onPress={onPress}

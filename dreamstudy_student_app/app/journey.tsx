@@ -1,13 +1,12 @@
 import { Image } from 'expo-image';
 
-import { Card } from '@/components/ui/react/cards/card';
+import { Card } from '@/components/ui/react/card';
 import { CollapsibleCard } from '@/components/ui/react/cards/collapsibleCard';
 import ParallaxScrollCard from '@/components/ui/react/cards/parallaxScrollCard';
 import { TextCard } from '@/components/ui/react/cards/textCard';
 import { ExternalLinkCard } from '@/components/ui/react/externalLink';
 import { IconSymbol } from '@/components/ui/react/iconSymbol';
-import { Fonts, journeyScreenStyles } from '@/utils/appStyles';
-import { Platform } from 'react-native';
+import { journeyScreenStyles } from '@/utils/appStyles';
 
 export default function JourneyScreen() {
   return (
@@ -63,39 +62,6 @@ export default function JourneyScreen() {
         <ExternalLinkCard href="https://reactnative.dev/docs/images">
           <TextCard type="link">Learn more</TextCard>
         </ExternalLinkCard>
-      </CollapsibleCard>
-      <CollapsibleCard title="Light and dark mode components">
-        <TextCard>
-          This template has light and dark mode support. The{' '}
-          <TextCard type="defaultSemiBold">useColorScheme()</TextCard> hook lets
-          you inspect what the user&apos;s current color scheme is, and so you
-          can adjust UI colors accordingly.
-        </TextCard>
-        <ExternalLinkCard href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <TextCard type="link">Learn more</TextCard>
-        </ExternalLinkCard>
-      </CollapsibleCard>
-      <CollapsibleCard title="Animations">
-        <TextCard>
-          This template includes an example of an animated component. The{' '}
-          <TextCard type="defaultSemiBold">components/HelloWave.tsx</TextCard>{' '}
-          component uses the powerful{' '}
-          <TextCard type="defaultSemiBold" style={{ fontFamily: Fonts.mono }}>
-            react-native-reanimated
-          </TextCard>{' '}
-          library to create a waving hand animation.
-        </TextCard>
-        {Platform.select({
-          ios: (
-            <TextCard>
-              The{' '}
-              <TextCard type="defaultSemiBold">
-                components/ParallaxScrollView.tsx
-              </TextCard>{' '}
-              component provides a parallax effect for the header image.
-            </TextCard>
-          )
-        })}
       </CollapsibleCard>
     </ParallaxScrollCard>
   );

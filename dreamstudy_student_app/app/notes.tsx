@@ -1,6 +1,6 @@
 import { Image } from 'expo-image';
 
-import { Card } from '@/components/ui/react/cards/card';
+import { Card } from '@/components/ui/react/card';
 import ParallaxScrollCard from '@/components/ui/react/cards/parallaxScrollCard';
 import { TextCard } from '@/components/ui/react/cards/textCard';
 import { RenderSkia } from '@/components/ui/skia/renderSkia';
@@ -9,12 +9,12 @@ import React from 'react';
 import { ActivityIndicator } from 'react-native';
 
 // On web, any Skia components have to wait before the wasm file has loaded to properly render
-// const SkiaIridescent = React.lazy(
-//   () => import('@/components/ui/skia/skiaIridescent')
+// const SkiaNoteGallery = React.lazy(
+//   () => import('@/components/ui/skia/skiaNoteGalleryOld')
 // );
 
-const SkiaNotepad = React.lazy(
-  () => import('@/components/ui/skia/skiaNotepad')
+const SkiaIridescent = React.lazy(
+  () => import('@/components/ui/skia/skiaIridescent')
 );
 
 export default function NotesScreen() {
@@ -35,7 +35,7 @@ export default function NotesScreen() {
         {/* RenderSkia tells React to wait before the .wasm file for Skia is properly loaded on the browser */}
         <React.Suspense fallback={<ActivityIndicator />}>
           <RenderSkia />
-          <SkiaNotepad />
+          <SkiaIridescent />
         </React.Suspense>
       </Card>
     </ParallaxScrollCard>

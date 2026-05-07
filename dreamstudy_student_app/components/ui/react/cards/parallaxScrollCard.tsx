@@ -10,7 +10,7 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { appValues } from '@/utils/appConstants';
 import { cardStyles } from '@/utils/appStyles';
 import { StyleProp, ViewProps } from 'react-native';
-import { Card } from './card';
+import { Card } from '../card';
 
 type ParallaxScrollCardProps = {
   headerBackgroundColor: StyleProp<ViewProps>;

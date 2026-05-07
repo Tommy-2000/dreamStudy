@@ -39,7 +39,7 @@ export default Sentry.wrap(function RootLayout() {
       // Wrap the root layout with FibreProvider to allow for context to be shared between Skia components
       <FiberProvider>
         <React.Fragment>
-          <RootTabs screenOptions={tabScreenOptions}>
+          <RootTabs screenOptions={tabScreenOptions} backBehavior="fullHistory">
             <Tabs.Screen
               name="index"
               options={{
@@ -93,6 +93,28 @@ export default Sentry.wrap(function RootLayout() {
               }}
             />
             <Tabs.Screen
+              name="calendar"
+              options={{
+                tabBarIcon: ({ focused, color, size }) => {
+                  if (focused) {
+                    return (
+                      <Ionicons name="calendar" size={size} color={color} />
+                    );
+                  } else {
+                    return (
+                      <Ionicons
+                        name="calendar-outline"
+                        size={size}
+                        color={color}
+                      />
+                    );
+                  }
+                },
+                tabBarLabel: 'Calendar',
+                title: 'Calendar'
+              }}
+            />
+            <Tabs.Screen
               name="journey"
               options={{
                 tabBarIcon: ({ focused, color, size }) => {
@@ -122,26 +144,6 @@ export default Sentry.wrap(function RootLayout() {
                 },
                 tabBarLabel: 'Support',
                 title: 'Support'
-              }}
-            />
-            <Tabs.Screen
-              name="user"
-              options={{
-                tabBarIcon: ({ focused, color, size }) => {
-                  if (focused) {
-                    return <Ionicons name="person" size={size} color={color} />;
-                  } else {
-                    return (
-                      <Ionicons
-                        name="person-outline"
-                        size={size}
-                        color={color}
-                      />
-                    );
-                  }
-                },
-                tabBarLabel: 'User',
-                title: 'User'
               }}
             />
           </RootTabs>
@@ -204,6 +206,26 @@ export default Sentry.wrap(function RootLayout() {
             }}
           />
           <Drawer.Screen
+            name="calendar"
+            options={{
+              drawerLabel: 'Calendar',
+              drawerIcon: ({ focused, color, size }) => {
+                if (focused) {
+                  return <Ionicons name="calendar" size={size} color={color} />;
+                } else {
+                  return (
+                    <Ionicons
+                      name="calendar-outline"
+                      size={size}
+                      color={color}
+                    />
+                  );
+                }
+              },
+              title: 'Calendar'
+            }}
+          />
+          <Drawer.Screen
             name="journey"
             options={{
               drawerLabel: 'Journey',
@@ -220,19 +242,19 @@ export default Sentry.wrap(function RootLayout() {
             }}
           />
           <Drawer.Screen
-            name="account"
+            name="support"
             options={{
-              drawerLabel: 'Account',
               drawerIcon: ({ focused, color, size }) => {
                 if (focused) {
-                  return <Ionicons name="person" size={size} color={color} />;
+                  return <Ionicons name="help" size={size} color={color} />;
                 } else {
                   return (
-                    <Ionicons name="person-outline" size={size} color={color} />
+                    <Ionicons name="help-outline" size={size} color={color} />
                   );
                 }
               },
-              title: 'Account'
+              drawerLabel: 'Support',
+              title: 'Support'
             }}
           />
         </RootDrawer>

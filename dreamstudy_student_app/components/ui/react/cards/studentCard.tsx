@@ -1,6 +1,6 @@
 import { Student } from '@/utils/types/zod/models';
 import { memo, PropsWithChildren } from 'react';
-import { Card } from './card';
+import { Card } from '../card';
 import { TextCard } from './textCard';
 
 export type StudentCardProps = {
@@ -12,7 +12,7 @@ const StudentCard = memo(({ student, ...otherProps }: StudentCardProps) => {
     <Card>
       <TextCard>{student.studentFirstName}</TextCard>
       <TextCard>{student.studentLastName}</TextCard>
-      <TextCard>{student.classNumber}</TextCard>
+      <TextCard>{student.studentYear}</TextCard>
       <TextCard>{student.revisionLevel}</TextCard>
       <TextCard>{student.supportType}</TextCard>
     </Card>

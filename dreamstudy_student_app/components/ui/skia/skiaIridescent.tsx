@@ -5,7 +5,6 @@
  */
 
 import {
-  Canvas,
   Fill,
   Shader,
   Skia,
@@ -15,6 +14,7 @@ import {
 import React from 'react';
 import { useWindowDimensions } from 'react-native';
 import { useDerivedValue } from 'react-native-reanimated';
+import { SkiaCard } from './skiaCard';
 
 const skiaSource = Skia.RuntimeEffect.Make(`
 uniform vec3 uResolution;
@@ -45,7 +45,7 @@ vec4 main(vec2 fragCoord) {
 }
 `);
 
-// Ensure that the SkRuntimeEffect type has no null type
+// Ensure that the SkRuntimeEffect type has no nulls
 type SkRuntimeEffectNN = NonNullable<SkRuntimeEffect>;
 
 export default function SkiaIridescent({
@@ -78,11 +78,11 @@ export default function SkiaIridescent({
   }, [clock, width, height]);
 
   return (
-    <Canvas style={{ flex: 1 }}>
+    <SkiaCard style={{ flex: 1 }}>
       <Fill>
         <Shader source={skiaSource as SkRuntimeEffectNN} uniforms={uniforms} />
       </Fill>
-    </Canvas>
+    </SkiaCard>
   );
 }
 
