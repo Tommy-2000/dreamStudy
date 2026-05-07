@@ -1,25 +1,21 @@
 import {
   SkiaDrawContextType,
-  SkiaDrawObject,
-  SkiaDrawObjects,
   SkiaDrawState,
+  SkiaObject,
+  SkiaObjects,
   SkiaPathType,
   SkiaResizeMode
 } from '@/utils/types/skia/skiaDrawTypes';
 import { SkColor, Skia, SkRect, SkSize } from '@shopify/react-native-skia';
 import React, { PropsWithChildren, useMemo } from 'react';
 
-export const SkiaDrawContext = React.createContext<
-  SkiaDrawContextType | undefined
->(undefined);
-
 const createSkiaDrawProviderValue = (): SkiaDrawContextType => {
   const skDrawState: SkiaDrawState = {
     size: { height: 2, width: 2 },
     color: Skia.Color('#ffffff'),
     pathType: 'normal',
-    drawObjects: [],
-    selectedDrawObjects: [],
+    skiaObjects: [],
+    selectedSkiaObjects: [],
     currentSelectionRect: undefined,
     resizeMode: undefined,
     backgroundColor: Skia.Color('#ffffff')
@@ -30,12 +26,12 @@ const createSkiaDrawProviderValue = (): SkiaDrawContextType => {
     skiaListeners.forEach(l => l(skds));
 
   const skiaCommands = {
-    addDrawObject: (skDrawObject: SkiaDrawObject) => {
-      skDrawState.drawObjects.push(skDrawObject);
+    addSkiaObject: (skDrawObject: SkiaObject) => {
+      skDrawState.skiaObjects.push(skDrawObject);
       notifySkiaListeners(skDrawState);
     },
-    setSelectedDrawObjects: (...selectedSkDrawObjects: SkiaDrawObjects) => {
-      skDrawState.selectedDrawObjects = selectedSkDrawObjects;
+    setSelectedSkiaObjects: (...selectedSkDrawObjects: SkiaObjects) => {
+      skDrawState.selectedSkiaObjects = selectedSkDrawObjects;
       notifySkiaListeners(skDrawState);
     },
     setPathType: (skPathType: SkiaPathType) => {
@@ -44,7 +40,7 @@ const createSkiaDrawProviderValue = (): SkiaDrawContextType => {
     },
     setColor: (skColor: SkColor) => {
       skDrawState.color = skColor;
-      skDrawState.selectedDrawObjects.forEach((d: SkiaDrawObject) => {
+      skDrawState.selectedSkiaObjects.forEach((d: SkiaObject) => {
         if (d.skiaType === 'path') {
           d.color = skColor;
         }
@@ -57,7 +53,7 @@ const createSkiaDrawProviderValue = (): SkiaDrawContextType => {
     },
     setSize: (skSize: SkSize) => {
       skDrawState.size = skSize;
-      skDrawState.selectedDrawObjects.forEach((o: SkiaDrawObject) => {
+      skDrawState.selectedSkiaObjects.forEach((o: SkiaObject) => {
         if (o.skiaType === 'path') {
           o.size = skSize;
         }
@@ -72,20 +68,20 @@ const createSkiaDrawProviderValue = (): SkiaDrawContextType => {
       skDrawState.resizeMode = skResizeMode;
       notifySkiaListeners(skDrawState);
     },
-    deleteSelectedDrawObjects: () => {
-      skDrawState.drawObjects = skDrawState.drawObjects.filter(
-        o => !skDrawState.selectedDrawObjects.includes(o)
+    deleteSelectedSkiaObjects: () => {
+      skDrawState.skiaObjects = skDrawState.skiaObjects.filter(
+        o => !skDrawState.selectedSkiaObjects.includes(o)
       );
-      skDrawState.selectedDrawObjects = [];
+      skDrawState.selectedSkiaObjects = [];
       notifySkiaListeners(skDrawState);
     },
-    deleteAllDrawObjects: () => {
-      skDrawState.drawObjects = [];
-      skDrawState.selectedDrawObjects = [];
+    deleteAllSkiaObjects: () => {
+      skDrawState.skiaObjects = [];
+      skDrawState.selectedSkiaObjects = [];
       notifySkiaListeners(skDrawState);
     },
     cleanUnecessarySkiaObjects: async () => {
-      skDrawState.selectedDrawObjects = [];
+      skDrawState.selectedSkiaObjects = [];
       notifySkiaListeners(skDrawState);
     }
   };
@@ -98,6 +94,10 @@ const createSkiaDrawProviderValue = (): SkiaDrawContextType => {
     }
   };
 };
+
+export const SkiaDrawContext = React.createContext<SkiaDrawContextType>(
+  createSkiaDrawProviderValue()
+);
 
 export const useSkiaDrawProvider = () => {
   const skiaDrawContext = useMemo(() => createSkiaDrawProviderValue(), []);

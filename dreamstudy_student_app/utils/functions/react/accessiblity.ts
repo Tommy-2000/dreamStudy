@@ -1,5 +1,5 @@
 import { AccessibilityInfo } from 'react-native';
-import { appLogger } from '../appLogger';
+import { appLogger } from '../../appLogger';
 
 export const checkScreenReader = async (): Promise<boolean> => {
   const screenReaderIsEnabled = await AccessibilityInfo.isScreenReaderEnabled();

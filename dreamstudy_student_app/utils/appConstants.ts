@@ -1,4 +1,8 @@
+import { Dimensions } from 'react-native';
+
 export const appValues = {
+  dimensionHeight: Dimensions.get('window').height,
+  dimensionWidth: Dimensions.get('window').width,
   parallaxHeaderHeight: 250
 };
 

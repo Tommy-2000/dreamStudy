@@ -1,13 +1,13 @@
 import { SkColor, Skia, SkSize } from '@shopify/react-native-skia';
-import { SkiaDrawObject, SkiaPathType } from '../types/skia/skiaDrawTypes';
+import { SkiaObject, SkiaPathType } from '../../types/skia/skiaDrawTypes';
 
-export const createSkiaPath = (
+export default function createSkiaPath(
   x: number,
   y: number,
   color: SkColor,
   size: SkSize,
   skiaPathType: SkiaPathType
-): SkiaDrawObject => {
+): SkiaObject {
   const skiaPath = Skia.Path.Make();
   skiaPath.moveTo(x, y);
   return {
@@ -18,4 +18,4 @@ export const createSkiaPath = (
     size,
     skiaPathType
   };
-};
+}
