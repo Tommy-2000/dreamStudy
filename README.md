@@ -15,7 +15,9 @@
 
 ## Project Motivation
 
-This project is currently being developed with the intention of developing my experience with React Native and ASP.NET, as well as providing a powerful tool that can best support SEND students currently studying GCSE or A Level examinations; addressing the support gaps identified in recent research studies. This project was also inspired by the work done by [Genio (formerly Glean)](https://genio.co/) and [Arbor Education](https://arbor-education.com/) to best support students in achieving their best and teachers in effectively planning a student's learning journey, shaping their overall educational pedagogy. An app for teachers that will allow for them to publish and tailor revision content for each student will also be added to this repo at a later date.
+This project is currently being developed with the intention of developing my experience with React Native and ASP.NET, as well as providing a powerful tool that can best support SEND students currently studying GCSE or A Level examinations; addressing the support gaps identified in recent research studies. This project was also inspired by the work done by [Genio (formerly Glean)](https://genio.co/) and [Arbor Education](https://arbor-education.com/) to best support students in achieving their best and teachers in effectively planning a student's learning journey, shaping their overall educational pedagogy.
+
+An app for teachers that will allow for them to publish and tailor revision content for each student will also be added to this repo at a later date. All work on this project is based on existing academical research into sensory-processing for neuro-diverse students within schools and any React Native developers, SEND teachers and experts within these field are more than welcome to collaborate and share feedback with me on key improvements and recommendations for the project.
 
 
 ## Pages
