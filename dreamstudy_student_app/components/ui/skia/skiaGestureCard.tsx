@@ -14,6 +14,7 @@ export type SkiaGestureCardProps = {
 } & SkiaCardProps;
 
 export function SkiaGestureCard({
+  ref: canvasRef,
   style: canvasStyle,
   style: gestureDetectorStyle,
   gesture,
@@ -24,7 +25,7 @@ export function SkiaGestureCard({
     <Card>
       <GestureHandlerRootView style={gestureDetectorStyle}>
         <GestureDetector gesture={gesture}>
-          <Canvas style={canvasStyle}>
+          <Canvas ref={canvasRef} style={canvasStyle}>
             <SkiaContextBridge>{children}</SkiaContextBridge>
           </Canvas>
         </GestureDetector>

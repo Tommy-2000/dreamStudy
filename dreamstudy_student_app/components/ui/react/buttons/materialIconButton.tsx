@@ -1,5 +1,5 @@
 import Octicons from '@expo/vector-icons/Octicons';
-import { TouchableOpacity } from 'react-native';
+import { PressableScale } from 'pressto';
 import { TextCard } from '../cards/textCard';
 import { MaterialButtonProps } from './materialButton';
 
@@ -348,7 +348,7 @@ export function MaterialIconButton({
   iconSize
 }: MaterialIconButtonProps) {
   return (
-    <TouchableOpacity
+    <PressableScale
       onPress={onPress}
       style={style}
       accessibilityHint={accessibilityHint}
@@ -358,6 +358,6 @@ export function MaterialIconButton({
         <Octicons name={iconName} size={iconSize} />
         {title}
       </TextCard>
-    </TouchableOpacity>
+    </PressableScale>
   );
 }

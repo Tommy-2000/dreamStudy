@@ -1,4 +1,4 @@
-import { TouchableOpacity } from 'react-native';
+import { PressableScale } from 'pressto';
 import { Card } from '../card';
 import { TextCard } from '../cards/textCard';
 import { MaterialButtonProps } from './materialButton';
@@ -12,7 +12,7 @@ export function MaterialToolButton({
   accessibilityHint
 }: MaterialToolButtonProps) {
   return (
-    <TouchableOpacity
+    <PressableScale
       onPress={onPress}
       style={style}
       accessibilityHint={accessibilityHint}
@@ -21,6 +21,6 @@ export function MaterialToolButton({
       <Card>
         <TextCard>{title}</TextCard>
       </Card>
-    </TouchableOpacity>
+    </PressableScale>
   );
 }
