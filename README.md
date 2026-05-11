@@ -44,7 +44,7 @@ Then create the necessary canvaskit.wasm file in the 'public' folder that allows
 npx setup-skia-web public && node skia_postinstall.js
 ```
 
-If you are running this on an Android or iOS device, the canvaskist.wasm file is ignored and native rendering is used instead.
+If you are running this on an Android or iOS device, the canvaskist.wasm file is ignored and native rendering is used instead. This project will not work with Expo Go because of the native code from the Reanimated and Skia packages.
 
 ## Contribute
 
