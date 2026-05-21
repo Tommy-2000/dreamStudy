@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { Text } from 'react-native';
 import type { SortableGridRenderItem } from 'react-native-sortables';
 import Sortable from 'react-native-sortables';
-import { Card } from '../card';
+import { Card } from './card';
 
 const DUMMY_DATA = Array.from(
   { length: 12 },

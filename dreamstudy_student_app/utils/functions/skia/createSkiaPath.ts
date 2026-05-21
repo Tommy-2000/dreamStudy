@@ -12,10 +12,10 @@ export default function createSkiaPath(
   skiaPath.moveTo(x, y);
   return {
     skiaDrawingType: 'path',
-    skiaPath,
+    path: skiaPath,
     skiaType: 'path',
     color,
     size,
-    skiaPathType
+    pathType: skiaPathType
   };
 }

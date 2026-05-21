@@ -3,7 +3,7 @@ import { RevisionContent } from '@/utils/types/zod/models';
 import { memo, PropsWithChildren } from 'react';
 import Sortable from 'react-native-sortables';
 import { Card } from '../card';
-import { TextCard } from './textCard';
+import { TextCard } from '../textCard';
 
 export type RevisionCardProps = {
   data: RevisionContent;

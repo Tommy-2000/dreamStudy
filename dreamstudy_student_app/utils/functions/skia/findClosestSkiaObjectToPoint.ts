@@ -1,17 +1,17 @@
 import { SkPoint } from '@shopify/react-native-skia';
-import { SkiaObjects } from '../../types/skia/skiaDrawTypes';
+import { SkObjects } from '../../types/skia/skiaDrawTypes';
 import getSkiaBounds from './getSkiaBounds';
 
 export default function findClosestDrawObjectToPoint(
   skiaPoint: SkPoint,
-  skiaObjects: SkiaObjects
+  skiaObjects: SkObjects
 ) {
   if (skiaObjects.length === 0) {
     return undefined;
   }
 
   for (let i = skiaObjects.length - 1; i >= 0; i--) {
-    if (skiaObjects[i].skiaPath.contains(skiaPoint.x, skiaPoint.y)) {
+    if (skiaObjects[i].path.contains(skiaPoint.x, skiaPoint.y)) {
       return skiaObjects[i];
     }
   }

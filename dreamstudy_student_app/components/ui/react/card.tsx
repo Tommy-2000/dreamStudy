@@ -1,8 +1,6 @@
-import { AccessibilityProps, View, type ViewProps } from 'react-native';
+import { CardProps } from '@/utils/types/react/uiTypes';
+import { View } from 'react-native';
 
-import { UnistylesValues } from 'react-native-unistyles';
-
-export type CardProps = ViewProps & AccessibilityProps & UnistylesValues;
 
 export function Card({
   style: styleProp,

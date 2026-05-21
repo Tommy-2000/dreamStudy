@@ -1,20 +1,20 @@
 import type { SkRect } from '@shopify/react-native-skia';
 import { processTransform2d } from '@shopify/react-native-skia';
-import { SkiaObjects, SkiaResizeMode } from '../../types/skia/skiaDrawTypes';
+import { SkObjects, SkiaResizeMode } from '../../types/skia/skiaDrawTypes';
 import { getBoundingBox as getSkiaBoundingBox } from './getSkiaBoundingBox';
 
 export const resizeElementsBy = (
   sx: number,
   sy: number,
-  resizeMode: SkiaResizeMode | undefined,
-  skiaObjects: SkiaObjects
+  skResizeMode: SkiaResizeMode | undefined,
+  skObjects: SkObjects
 ) => {
-  const skiaSource = getSkiaBoundingBox(skiaObjects);
+  const skiaSource = getSkiaBoundingBox(skObjects);
   if (skiaSource === undefined) {
     return;
   }
   let dest: SkRect;
-  switch (resizeMode) {
+  switch (skResizeMode) {
     case 'topLeft':
       dest = resizeBounds(sx, sy, -sx, -sy, skiaSource);
       break;
@@ -49,9 +49,9 @@ export const resizeElementsBy = (
     { scaleY }
   ]);
   // use to scale elements
-  for (let i = 0; i < skiaObjects.length; i++) {
-    const skiaObject = skiaObjects[i];
-    skiaObject.skiaPath.transform(skiaMatrix);
+  for (let i = 0; i < skObjects.length; i++) {
+    const skiaObject = skObjects[i];
+    skiaObject.path.transform(skiaMatrix);
   }
 };
 

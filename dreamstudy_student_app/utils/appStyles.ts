@@ -267,6 +267,13 @@ export const cardStyles = StyleSheet.create(theme => ({
     flex: 1,
     padding: 32,
     gap: 16
+  },
+  drawingToolbar: {
+    borderRadius: 10,
+    flex: 1,
+    padding: 10,
+    height: 50,
+    width: '100%'
   }
 }));
 
@@ -301,7 +308,11 @@ export const buttonStyles = StyleSheet.create(theme => ({
     borderRadius: 10,
     padding: 10,
     elevation: 10
-  }
+  },
+  drawToolbarButton: {},
+  colorPickerToolbarButton: {},
+  selectionToolbarButton: {},
+  deleteToolbarButton: {}
 }));
 
 export const calendarTheme: CalendarTheme = {

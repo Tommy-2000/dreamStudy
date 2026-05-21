@@ -1,6 +1,6 @@
 import { PressableScale } from 'pressto';
 import { Card } from '../card';
-import { TextCard } from '../cards/textCard';
+import { TextCard } from '../textCard';
 import { MaterialButtonProps } from './materialButton';
 
 export interface MaterialToolButtonProps extends MaterialButtonProps {}

@@ -7,7 +7,7 @@ import {
 import { memo, useMemo } from 'react';
 import { MaterialIconButton } from '../buttons/materialIconButton';
 import { Card } from '../card';
-import { TextCard } from '../cards/textCard';
+import { TextCard } from '../textCard';
 
 export interface CalendarCardProps extends FlashCalendarProps {
   onPastMonthPress: () => void;

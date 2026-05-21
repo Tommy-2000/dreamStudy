@@ -1,12 +1,12 @@
 import { SkPoint } from '@shopify/react-native-skia';
-import { SkiaObjects, SkiaResizeMode } from '../../types/skia/skiaDrawTypes';
+import { SkObjects, SkiaResizeMode } from '../../types/skia/skiaDrawTypes';
 import { getBoundingBox } from './getSkiaBoundingBox';
 
 const hitSlop = 8;
 
 export const findResizeMode = (
   skPoint: SkPoint,
-  selectedElements: SkiaObjects
+  selectedElements: SkObjects
 ): SkiaResizeMode | undefined => {
   const skiaBoundingBox = getBoundingBox(selectedElements);
   if (!skiaBoundingBox) {

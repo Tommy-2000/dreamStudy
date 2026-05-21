@@ -1,6 +1,6 @@
 import { Student } from '@/utils/types/zod/models';
 import { memo, PropsWithChildren } from 'react';
-import { Card } from '../card';
+import { Card } from './card';
 import { TextCard } from './textCard';
 
 export type StudentCardProps = {

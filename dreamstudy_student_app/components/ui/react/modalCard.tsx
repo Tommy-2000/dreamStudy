@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, useState } from 'react';
 import { Modal } from 'react-native';
-import { Card } from '../card';
+import { Card } from './card';
 import { TextCard } from './textCard';
 
 type ModalProps = PropsWithChildren<{

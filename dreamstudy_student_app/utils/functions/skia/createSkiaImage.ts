@@ -16,7 +16,6 @@ export default function createSkiaImage(skiaImage: SkImage): SkiaObject {
     skiaType: 'image',
     skiaDrawingType: 'image',
     image: skiaImage,
-    skiaPath: skiaPath,
     path: skiaPath
   };
 }

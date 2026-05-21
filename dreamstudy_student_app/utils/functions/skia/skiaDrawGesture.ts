@@ -1,6 +1,6 @@
+import { useNoteUIContext } from '@/hooks/react/useNoteUIContext';
 import createSkiaPath from '@/utils/functions/skia/createSkiaPath';
 import findClosestDrawObjectToPoint from '@/utils/functions/skia/findClosestSkiaObjectToPoint';
-import findPointInSkiaRect from '@/utils/functions/skia/findPointInSkiaRect';
 import findSkiaObjectsInRect from '@/utils/functions/skia/findSkiaObjectsInRect';
 import { findResizeMode } from '@/utils/functions/skia/findSkiaResizeMode';
 import { getBoundingBox } from '@/utils/functions/skia/getSkiaBoundingBox';
@@ -8,25 +8,29 @@ import { resizeElementsBy as resizeSkiaObjectsBy } from '@/utils/functions/skia/
 import { Skia, type SkPoint } from '@shopify/react-native-skia';
 import { useRef } from 'react';
 import { Gesture } from 'react-native-gesture-handler';
-import { useRevisionNotepadContext } from '../../../hooks/react/useNotepadContext';
 import { useSkiaDrawContext } from '../../../hooks/skia/useSkiaDrawContext';
+import { findPointInSkiaRect } from './findPointInSkiaRect';
 
 export default function skiaDrawGesture() {
   const skiaPrevPointRef = useRef<SkPoint>(Skia.Point(0, 0));
 
   const skiaDrawContext = useSkiaDrawContext();
 
-  const notepadContext = useRevisionNotepadContext();
+  const noteUIContext = useNoteUIContext();
 
   return Gesture.Pan()
     .onStart(e => {
-      switch (notepadContext.notepadState.notepadMenu) {
+      switch (noteUIContext.noteUIState.noteUIMenu) {
         case 'drawing':
         case 'colors': {
           // Obtain the color, size and pathType to create a drawing
-          const { color, size, pathType } = skiaDrawContext.drawState;
+          const {
+            skColor,
+            skSize,
+            skPathType: pathType
+          } = skiaDrawContext.drawState;
           skiaDrawContext.drawCommands.addSkiaObject(
-            createSkiaPath(e.x, e.y, color, size, pathType)
+            createSkiaPath(e.x, e.y, skColor, skSize, pathType)
           );
           break;
         }
@@ -35,12 +39,12 @@ export default function skiaDrawGesture() {
           // Get the closest drawObject from the SkiaPoint
           const skiaDrawObject = findClosestDrawObjectToPoint(
             Skia.Point(e.x, e.y),
-            skiaDrawContext.drawState.skiaObjects
+            skiaDrawContext.drawState.skObjects
           );
 
           if (
             skiaDrawObject &&
-            skiaDrawContext.drawState.skiaObjects.length === 0
+            skiaDrawContext.drawState.skObjects.length === 0
           ) {
             // Add the SkiaDrawObject to the array with the draw command
             skiaDrawContext.drawCommands.setSelectedSkiaObjects(skiaDrawObject);
@@ -50,7 +54,7 @@ export default function skiaDrawGesture() {
 
           // Get the bounding box of all selected SkiaDrawObjects
           const skiaBoundingBox = getBoundingBox(
-            skiaDrawContext.drawState.selectedSkiaObjects
+            skiaDrawContext.drawState.selectedSkObjects
           );
           if (
             skiaBoundingBox &&
@@ -59,7 +63,7 @@ export default function skiaDrawGesture() {
             skiaDrawContext.drawCommands.setResizeMode(
               findResizeMode(
                 Skia.Point(e.x, e.y),
-                skiaDrawContext.drawState.selectedSkiaObjects
+                skiaDrawContext.drawState.selectedSkObjects
               )
             );
           } else {
@@ -85,17 +89,17 @@ export default function skiaDrawGesture() {
       skiaPrevPointRef.current = Skia.Point(e.x, e.y);
     })
     .onChange(e => {
-      switch (notepadContext.notepadState.notepadMenu) {
+      switch (noteUIContext.noteUIState.noteUIMenu) {
         case undefined:
         case 'drawing':
         case 'colors': {
           const skiaDrawObject =
-            skiaDrawContext.drawState.skiaObjects[
-              skiaDrawContext.drawState.skiaObjects.length - 1
+            skiaDrawContext.drawState.skObjects[
+              skiaDrawContext.drawState.skObjects.length - 1
             ];
           const xQuad = (skiaPrevPointRef.current.x + e.x) / 2;
           const yQuad = (skiaPrevPointRef.current.y + e.y) / 2;
-          skiaDrawObject.skiaPath.quadTo(
+          skiaDrawObject.path.quadTo(
             e.x - skiaPrevPointRef.current.x,
             e.y - skiaPrevPointRef.current.y,
             xQuad,
@@ -104,21 +108,21 @@ export default function skiaDrawGesture() {
           break;
         }
         case 'selection': {
-          if (skiaDrawContext.drawState.selectedSkiaObjects.length > 0) {
+          if (skiaDrawContext.drawState.selectedSkObjects.length > 0) {
             resizeSkiaObjectsBy(
               e.x,
               e.y,
-              skiaDrawContext.drawState.resizeMode,
-              skiaDrawContext.drawState.selectedSkiaObjects
+              skiaDrawContext.drawState.skResizeMode,
+              skiaDrawContext.drawState.selectedSkObjects
             );
           } else {
-            if (skiaDrawContext.drawState.currentSelectionRect) {
+            if (skiaDrawContext.drawState.currentSelectionSkRect) {
               skiaDrawContext.drawCommands.setSelectionRect(
                 Skia.XYWHRect(
-                  skiaDrawContext.drawState.currentSelectionRect.x,
-                  skiaDrawContext.drawState.currentSelectionRect.y,
-                  e.x - skiaDrawContext.drawState.currentSelectionRect.x,
-                  e.y - skiaDrawContext.drawState.currentSelectionRect.y
+                  skiaDrawContext.drawState.currentSelectionSkRect.x,
+                  skiaDrawContext.drawState.currentSelectionSkRect.y,
+                  e.x - skiaDrawContext.drawState.currentSelectionSkRect.x,
+                  e.y - skiaDrawContext.drawState.currentSelectionSkRect.y
                 )
               );
             }
@@ -132,13 +136,13 @@ export default function skiaDrawGesture() {
       skiaPrevPointRef.current = Skia.Point(e.x, e.y);
     })
     .onEnd(e => {
-      switch (notepadContext.notepadState.notepadMenu) {
+      switch (noteUIContext.noteUIState.noteUIMenu) {
         case 'selection': {
-          if (skiaDrawContext.drawState.currentSelectionRect) {
+          if (skiaDrawContext.drawState.currentSelectionSkRect) {
             // Find skiaObjects within the bounds of the skiaRect
             const skiaObjectsInRect = findSkiaObjectsInRect(
-              skiaDrawContext.drawState.currentSelectionRect,
-              skiaDrawContext.drawState.skiaObjects
+              skiaDrawContext.drawState.currentSelectionSkRect,
+              skiaDrawContext.drawState.skObjects
             );
             // If there are skiaObjects in the rect, set them as selectedSkiaObjects
             if (skiaObjectsInRect) {

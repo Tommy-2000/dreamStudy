@@ -6,7 +6,7 @@ import Animated, {
 import { useUnistyles } from 'react-native-unistyles';
 
 import { cardStyles } from '@/utils/appStyles';
-import { Card } from '../card';
+import { Card } from './card';
 
 type ScrollCardProps = PropsWithChildren;
 

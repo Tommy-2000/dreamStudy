@@ -1,15 +1,12 @@
 {
   "expo": {
-    "name": "dreamstudy",
-    "slug": "dreamstudy",
+    "name": "dreamstudy-student",
+    "slug": "dreamstudy-student",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "dreamstudy",
+    "scheme": "dreamstudy-student",
     "userInterfaceStyle": "automatic",
-    "ios": {
-      "supportsTablet": true
-    },
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
@@ -18,12 +15,17 @@
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "com.dreamdivers.dreamstudy"
+      "package": "com.dreamdivers.dreamstudy_student"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.dreamdivers.dreamstudy-student"
     },
     "web": {
-      "output": "single",
+      "output": "single", // single allows for Metro to render the web build as a SPA (Single Page Application)
       "bundler": "metro",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/favicon.png",
+      "name": "dreamStudy - Student"
     },
     "plugins": [
       "expo-router",

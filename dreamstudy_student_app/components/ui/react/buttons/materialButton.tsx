@@ -1,6 +1,6 @@
 import { AnimatedPressableOptions, PressableScale } from 'pressto';
 import { Card } from '../card';
-import { TextCard } from '../cards/textCard';
+import { TextCard } from '../textCard';
 
 export interface MaterialButtonProps {
   onPress: ((options: AnimatedPressableOptions) => void) | undefined;

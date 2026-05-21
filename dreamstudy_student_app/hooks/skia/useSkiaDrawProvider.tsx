@@ -2,45 +2,45 @@ import {
   SkiaDrawContextType,
   SkiaDrawState,
   SkiaObject,
-  SkiaObjects,
   SkiaPathType,
-  SkiaResizeMode
+  SkiaResizeMode,
+  SkObjects
 } from '@/utils/types/skia/skiaDrawTypes';
 import { SkColor, Skia, SkRect, SkSize } from '@shopify/react-native-skia';
 import React, { PropsWithChildren, useMemo } from 'react';
 
 const createSkiaDrawProviderValue = (): SkiaDrawContextType => {
   const skDrawState: SkiaDrawState = {
-    size: { height: 2, width: 2 },
-    color: Skia.Color('#ffffff'),
-    pathType: 'normal',
-    skiaObjects: [],
-    selectedSkiaObjects: [],
-    currentSelectionRect: undefined,
-    resizeMode: undefined,
-    backgroundColor: Skia.Color('#ffffff')
+    skSize: { height: 2, width: 2 },
+    skColor: Skia.Color('#ffffff'),
+    skPathType: 'normal',
+    skObjects: [],
+    selectedSkObjects: [],
+    currentSelectionSkRect: undefined,
+    skResizeMode: undefined,
+    skBackgroundColor: Skia.Color('#ffffff')
   };
 
-  const skiaListeners = [] as ((skds: SkiaDrawState) => void)[];
-  const notifySkiaListeners = (skds: SkiaDrawState) =>
-    skiaListeners.forEach(l => l(skds));
+  const skiaListeners = [] as ((skDrawState: SkiaDrawState) => void)[];
+  const notifySkiaListeners = (skDrawState: SkiaDrawState) =>
+    skiaListeners.forEach(l => l(skDrawState));
 
   const skiaCommands = {
     addSkiaObject: (skDrawObject: SkiaObject) => {
-      skDrawState.skiaObjects.push(skDrawObject);
+      skDrawState.skObjects.push(skDrawObject);
       notifySkiaListeners(skDrawState);
     },
-    setSelectedSkiaObjects: (...selectedSkDrawObjects: SkiaObjects) => {
-      skDrawState.selectedSkiaObjects = selectedSkDrawObjects;
+    setSelectedSkiaObjects: (...selectedSkDrawObjects: SkObjects) => {
+      skDrawState.selectedSkObjects = selectedSkDrawObjects;
       notifySkiaListeners(skDrawState);
     },
     setPathType: (skPathType: SkiaPathType) => {
-      skDrawState.pathType = skPathType;
+      skDrawState.skPathType = skPathType;
       notifySkiaListeners(skDrawState);
     },
     setColor: (skColor: SkColor) => {
-      skDrawState.color = skColor;
-      skDrawState.selectedSkiaObjects.forEach((d: SkiaObject) => {
+      skDrawState.skColor = skColor;
+      skDrawState.selectedSkObjects.forEach((d: SkiaObject) => {
         if (d.skiaType === 'path') {
           d.color = skColor;
         }
@@ -48,12 +48,12 @@ const createSkiaDrawProviderValue = (): SkiaDrawContextType => {
       notifySkiaListeners(skDrawState);
     },
     setBackgroundColor: (skBackgroundColor: SkColor) => {
-      skDrawState.backgroundColor = skBackgroundColor;
+      skDrawState.skBackgroundColor = skBackgroundColor;
       notifySkiaListeners(skDrawState);
     },
     setSize: (skSize: SkSize) => {
-      skDrawState.size = skSize;
-      skDrawState.selectedSkiaObjects.forEach((o: SkiaObject) => {
+      skDrawState.skSize = skSize;
+      skDrawState.selectedSkObjects.forEach((o: SkiaObject) => {
         if (o.skiaType === 'path') {
           o.size = skSize;
         }
@@ -61,27 +61,27 @@ const createSkiaDrawProviderValue = (): SkiaDrawContextType => {
       notifySkiaListeners(skDrawState);
     },
     setSelectionRect: (skRect: SkRect | undefined) => {
-      skDrawState.currentSelectionRect = skRect;
+      skDrawState.currentSelectionSkRect = skRect;
       notifySkiaListeners(skDrawState);
     },
     setResizeMode: (skResizeMode: SkiaResizeMode | undefined) => {
-      skDrawState.resizeMode = skResizeMode;
+      skDrawState.skResizeMode = skResizeMode;
       notifySkiaListeners(skDrawState);
     },
     deleteSelectedSkiaObjects: () => {
-      skDrawState.skiaObjects = skDrawState.skiaObjects.filter(
-        o => !skDrawState.selectedSkiaObjects.includes(o)
+      skDrawState.skObjects = skDrawState.skObjects.filter(
+        o => !skDrawState.selectedSkObjects.includes(o)
       );
-      skDrawState.selectedSkiaObjects = [];
+      skDrawState.selectedSkObjects = [];
       notifySkiaListeners(skDrawState);
     },
     deleteAllSkiaObjects: () => {
-      skDrawState.skiaObjects = [];
-      skDrawState.selectedSkiaObjects = [];
+      skDrawState.skObjects = [];
+      skDrawState.selectedSkObjects = [];
       notifySkiaListeners(skDrawState);
     },
     cleanUnecessarySkiaObjects: async () => {
-      skDrawState.selectedSkiaObjects = [];
+      skDrawState.selectedSkObjects = [];
       notifySkiaListeners(skDrawState);
     }
   };

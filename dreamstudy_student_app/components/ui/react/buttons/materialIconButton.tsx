@@ -1,6 +1,6 @@
 import Octicons from '@expo/vector-icons/Octicons';
 import { PressableScale } from 'pressto';
-import { TextCard } from '../cards/textCard';
+import { TextCard } from '../textCard';
 import { MaterialButtonProps } from './materialButton';
 
 export interface MaterialIconButtonProps extends MaterialButtonProps {

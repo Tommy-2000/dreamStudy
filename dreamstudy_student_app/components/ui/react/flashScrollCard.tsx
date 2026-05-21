@@ -1,7 +1,7 @@
-import { cardStyles } from '@/unistyles';
+import { cardStyles } from '@/utils/appStyles';
 import { FlashList } from '@shopify/flash-list';
 import { StyleProp, ViewProps } from 'react-native';
-import { Card } from '../card';
+import { Card } from './card';
 import { TextCard } from './textCard';
 
 export type FlashListProps = {
@@ -18,7 +18,7 @@ export default function FlashScrollCard({
   initialScrollIndex
 }: FlashListProps) {
   return (
-    <Card style={cardStyles.flashScroll}>
+    <Card style={cardStyles.flashScrollContent}>
       <FlashList
         data={data}
         numColumns={numColumns}
