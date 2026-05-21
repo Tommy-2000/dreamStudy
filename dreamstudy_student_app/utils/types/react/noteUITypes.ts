@@ -1,17 +1,19 @@
 export type NoteUIMenu = 'typing' | 'drawing' | 'selection' | 'colors';
 
 export type NoteUIState = {
-  noteUIMenu: NoteUIMenu | undefined;
+  noteMenu: NoteUIMenu | undefined;
+  noteModalVisible: boolean;
 };
 
 export type NoteUICommands = {
-  toggleNoteUIMenu: (noteUIMenu: NoteUIMenu | undefined) => void;
+  toggleNoteMenu: (noteUIMenu: NoteUIMenu | undefined) => void;
+  toggleNoteModal: (visible: boolean) => void;
 };
 
 export type NoteUIContextType = {
-  noteUIState: NoteUIState;
-  noteUICommands: NoteUICommands;
-  addNoteUIListener: (
-    noteUIListener: (noteUIState: NoteUIState) => void
+  state: NoteUIState;
+  commands: NoteUICommands;
+  addNoteListener: (
+    noteListener: (noteUIState: NoteUIState) => void
   ) => () => void;
 };

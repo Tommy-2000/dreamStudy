@@ -7,7 +7,8 @@ import React, { PropsWithChildren, useMemo } from 'react';
 
 const createNoteUIProviderValue = (): NoteUIContextType => {
   const noteUIState: NoteUIState = {
-    noteUIMenu: undefined
+    noteMenu: undefined,
+    noteModalVisible: false
   };
 
   const noteUIListeners = [] as ((ns: NoteUIState) => void)[];
@@ -15,17 +16,21 @@ const createNoteUIProviderValue = (): NoteUIContextType => {
     noteUIListeners.forEach(l => l(ns));
 
   const noteUICommands = {
-    toggleNoteUIMenu: (noteUIMenu: NoteUIMenu | undefined) => {
-      noteUIState.noteUIMenu =
-        noteUIState.noteUIMenu === noteUIMenu ? undefined : noteUIMenu;
+    toggleNoteMenu: (noteUIMenu: NoteUIMenu | undefined) => {
+      noteUIState.noteMenu =
+        noteUIState.noteMenu === noteUIMenu ? undefined : noteUIMenu;
+      notifyNoteUIListeners(noteUIState);
+    },
+    toggleNoteModal: (visible: boolean) => {
+      noteUIState.noteModalVisible = visible;
       notifyNoteUIListeners(noteUIState);
     }
   };
 
   return {
-    noteUIState,
-    noteUICommands,
-    addNoteUIListener: (cns: (noteUIState: NoteUIState) => void) => {
+    state: noteUIState,
+    commands: noteUICommands,
+    addNoteListener: (cns: (noteUIState: NoteUIState) => void) => {
       noteUIListeners.push(cns);
       return () => noteUIListeners.splice(noteUIListeners.indexOf(cns), 1);
     }

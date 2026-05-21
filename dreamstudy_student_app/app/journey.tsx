@@ -1,10 +1,10 @@
 import { Image } from 'expo-image';
 
-import { CalendarCard } from '@/components/ui/react/calendar/calendarCard';
 import { Card } from '@/components/ui/react/card';
 import { CollapsibleCard } from '@/components/ui/react/collapsibleCard';
 import { ExternalLinkCard } from '@/components/ui/react/externalLink';
 import { IconSymbol } from '@/components/ui/react/iconSymbol';
+import { CalendarCard } from '@/components/ui/react/journey/calendarCard';
 import ParallaxScrollCard from '@/components/ui/react/parallaxScrollCard';
 import { TextCard } from '@/components/ui/react/textCard';
 import { journeyScreenStyles } from '@/utils/appStyles';

@@ -1,9 +1,9 @@
 import type { PropsWithChildren, ReactElement } from 'react';
 import Animated, {
-  interpolate,
-  useAnimatedRef,
-  useAnimatedStyle,
-  useScrollOffset
+    interpolate,
+    useAnimatedRef,
+    useAnimatedStyle,
+    useScrollOffset
 } from 'react-native-reanimated';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
@@ -67,7 +67,7 @@ export default function ParallaxScrollCard({
         style={[parallaxScroll.parallaxHeader, headerAnimatedStyle]}>
         {headerImage}
       </Animated.View>
-      <Card style={cardStyles.parallaxScrollContent}>{children}</Card>
+      <Card style={cardStyles.parallaxScrollCard}>{children}</Card>
     </Animated.ScrollView>
   );
 }

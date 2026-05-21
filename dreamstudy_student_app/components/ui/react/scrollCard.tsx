@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react';
 import Animated, {
-  useAnimatedRef,
-  useScrollOffset
+    useAnimatedRef,
+    useScrollOffset
 } from 'react-native-reanimated';
 import { useUnistyles } from 'react-native-unistyles';
 
@@ -21,7 +21,7 @@ export default function ScrollCard({ children }: ScrollCardProps) {
       scrollViewOffset={scrollOffset}
       style={{ flex: 1 }}
       scrollEventThrottle={16}>
-      <Card style={cardStyles.parallaxScrollContent}>{children}</Card>
+      <Card style={cardStyles.parallaxScrollCard}>{children}</Card>
     </Animated.ScrollView>
   );
 }

@@ -1,9 +1,9 @@
 import {
-  SkColor,
-  SkImage,
-  SkPath,
-  SkRect,
-  SkSize
+    SkColor,
+    SkImage,
+    SkPath,
+    SkRect,
+    SkSize
 } from '@shopify/react-native-skia';
 
 export type SkiaDrawType = 'path' | 'image';
@@ -58,8 +58,8 @@ export type SkiaDrawCommands = {
 };
 
 export type SkiaDrawContextType = {
-  drawState: SkiaDrawState;
-  drawCommands: SkiaDrawCommands;
+  state: SkiaDrawState;
+  commands: SkiaDrawCommands;
   addDrawListener: (
     drawListener: (drawState: SkiaDrawState) => void
   ) => () => void;

@@ -180,7 +180,7 @@ export const navigationStyles = StyleSheet.create({
 });
 
 export const cardStyles = StyleSheet.create(theme => ({
-  default: {
+  defaultCard: {
     borderRadius: 20
   },
   modalHeader: {
@@ -214,7 +214,7 @@ export const cardStyles = StyleSheet.create(theme => ({
     padding: 5,
     width: '90%'
   },
-  calendarContainer: {
+  calendarCardContainer: {
     height: '100%',
     width: '100%',
     borderRadius: 20,
@@ -222,47 +222,47 @@ export const cardStyles = StyleSheet.create(theme => ({
     flex: 1,
     backgroundColor: theme.colors.background
   },
-  student: {
+  studentCard: {
     borderRadius: 20,
     padding: 10,
     flex: 1,
     backgroundColor: theme.colors.accents.apple
   },
-  teacher: {
+  teacherCard: {
     borderRadius: 20,
     padding: 10,
     flex: 1,
     backgroundColor: theme.colors.accents.banana
   },
-  supportAssistant: {
+  supportAssistantCard: {
     borderRadius: 20,
     padding: 10,
     flex: 1,
     backgroundColor: theme.colors.accents.pumpkin
   },
-  revision: {
+  revisionCard: {
     borderRadius: 20,
     padding: 10,
     flex: 1,
     backgroundColor: theme.colors.accents.storm
   },
-  parallaxScrollHeader: {
+  parallaxScrollHeaderCard: {
     height: appValues.parallaxHeaderHeight,
     overflow: 'hidden'
   },
-  parallaxScrollContent: {
+  parallaxScrollCard: {
     borderRadius: 20,
     flex: 1,
     padding: 32,
     gap: 16
   },
-  scrollContent: {
+  scrollCard: {
     borderRadius: 20,
     flex: 1,
     padding: 32,
     gap: 16
   },
-  flashScrollContent: {
+  flashScrollCard: {
     borderRadius: 20,
     flex: 1,
     padding: 32,
@@ -309,10 +309,36 @@ export const buttonStyles = StyleSheet.create(theme => ({
     padding: 10,
     elevation: 10
   },
-  drawToolbarButton: {},
-  colorPickerToolbarButton: {},
-  selectionToolbarButton: {},
-  deleteToolbarButton: {}
+  drawToolbarButton: {
+    backgroundColor: theme.colors.background,
+    borderRadius: 10,
+    padding: 10,
+    elevation: 10
+  },
+  colorPickerToolbarButton: {
+    backgroundColor: theme.colors.background,
+    borderRadius: 10,
+    padding: 10,
+    elevation: 10
+  },
+  selectionToolbarButton: {
+    backgroundColor: theme.colors.background,
+    borderRadius: 10,
+    padding: 10,
+    elevation: 10
+  },
+  deleteToolbarButton: {
+    backgroundColor: theme.colors.background,
+    borderRadius: 10,
+    padding: 10,
+    elevation: 10
+  },
+  saveDrawingToolbarButton: {
+    backgroundColor: theme.colors.background,
+    borderRadius: 10,
+    padding: 10,
+    elevation: 10
+  }
 }));
 
 export const calendarTheme: CalendarTheme = {

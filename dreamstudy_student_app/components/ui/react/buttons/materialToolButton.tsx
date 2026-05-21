@@ -1,16 +1,14 @@
+import { MaterialButtonProps } from '@/utils/types/props/buttonProps';
 import { PressableScale } from 'pressto';
 import { Card } from '../card';
 import { TextCard } from '../textCard';
-import { MaterialButtonProps } from './materialButton';
-
-export interface MaterialToolButtonProps extends MaterialButtonProps {}
 
 export function MaterialToolButton({
   onPress,
   style,
   title,
   accessibilityHint
-}: MaterialToolButtonProps) {
+}: MaterialButtonProps) {
   return (
     <PressableScale
       onPress={onPress}

@@ -20,7 +20,7 @@ export default function skiaDrawGesture() {
 
   return Gesture.Pan()
     .onStart(e => {
-      switch (noteUIContext.noteUIState.noteUIMenu) {
+      switch (noteUIContext.state.noteMenu) {
         case 'drawing':
         case 'colors': {
           // Obtain the color, size and pathType to create a drawing
@@ -28,8 +28,8 @@ export default function skiaDrawGesture() {
             skColor,
             skSize,
             skPathType: pathType
-          } = skiaDrawContext.drawState;
-          skiaDrawContext.drawCommands.addSkiaObject(
+          } = skiaDrawContext.state;
+          skiaDrawContext.commands.addSkiaObject(
             createSkiaPath(e.x, e.y, skColor, skSize, pathType)
           );
           break;
@@ -39,43 +39,38 @@ export default function skiaDrawGesture() {
           // Get the closest drawObject from the SkiaPoint
           const skiaDrawObject = findClosestDrawObjectToPoint(
             Skia.Point(e.x, e.y),
-            skiaDrawContext.drawState.skObjects
+            skiaDrawContext.state.skObjects
           );
 
-          if (
-            skiaDrawObject &&
-            skiaDrawContext.drawState.skObjects.length === 0
-          ) {
+          if (skiaDrawObject && skiaDrawContext.state.skObjects.length === 0) {
             // Add the SkiaDrawObject to the array with the draw command
-            skiaDrawContext.drawCommands.setSelectedSkiaObjects(skiaDrawObject);
-            skiaDrawContext.drawCommands.setSelectionRect(undefined);
+            skiaDrawContext.commands.setSelectedSkiaObjects(skiaDrawObject);
+            skiaDrawContext.commands.setSelectionRect(undefined);
             break;
           }
 
           // Get the bounding box of all selected SkiaDrawObjects
           const skiaBoundingBox = getBoundingBox(
-            skiaDrawContext.drawState.selectedSkObjects
+            skiaDrawContext.state.selectedSkObjects
           );
           if (
             skiaBoundingBox &&
             findPointInSkiaRect(Skia.Point(e.x, e.y), skiaBoundingBox)
           ) {
-            skiaDrawContext.drawCommands.setResizeMode(
+            skiaDrawContext.commands.setResizeMode(
               findResizeMode(
                 Skia.Point(e.x, e.y),
-                skiaDrawContext.drawState.selectedSkObjects
+                skiaDrawContext.state.selectedSkObjects
               )
             );
           } else {
             // If the SkiaDrawObject is not null, add it to the selected skiaDrawObjects
             if (skiaDrawObject) {
-              skiaDrawContext.drawCommands.setSelectedSkiaObjects(
-                skiaDrawObject
-              );
+              skiaDrawContext.commands.setSelectedSkiaObjects(skiaDrawObject);
             } else {
-              skiaDrawContext.drawCommands.setSelectedSkiaObjects();
+              skiaDrawContext.commands.setSelectedSkiaObjects();
               // The X and Y of the gesture are passed to a new SkiaRect object
-              skiaDrawContext.drawCommands.setSelectionRect(
+              skiaDrawContext.commands.setSelectionRect(
                 Skia.XYWHRect(e.x, e.y, 0, 0)
               );
             }
@@ -89,13 +84,13 @@ export default function skiaDrawGesture() {
       skiaPrevPointRef.current = Skia.Point(e.x, e.y);
     })
     .onChange(e => {
-      switch (noteUIContext.noteUIState.noteUIMenu) {
+      switch (noteUIContext.state.noteMenu) {
         case undefined:
         case 'drawing':
         case 'colors': {
           const skiaDrawObject =
-            skiaDrawContext.drawState.skObjects[
-              skiaDrawContext.drawState.skObjects.length - 1
+            skiaDrawContext.state.skObjects[
+              skiaDrawContext.state.skObjects.length - 1
             ];
           const xQuad = (skiaPrevPointRef.current.x + e.x) / 2;
           const yQuad = (skiaPrevPointRef.current.y + e.y) / 2;
@@ -108,21 +103,21 @@ export default function skiaDrawGesture() {
           break;
         }
         case 'selection': {
-          if (skiaDrawContext.drawState.selectedSkObjects.length > 0) {
+          if (skiaDrawContext.state.selectedSkObjects.length > 0) {
             resizeSkiaObjectsBy(
               e.x,
               e.y,
-              skiaDrawContext.drawState.skResizeMode,
-              skiaDrawContext.drawState.selectedSkObjects
+              skiaDrawContext.state.skResizeMode,
+              skiaDrawContext.state.selectedSkObjects
             );
           } else {
-            if (skiaDrawContext.drawState.currentSelectionSkRect) {
-              skiaDrawContext.drawCommands.setSelectionRect(
+            if (skiaDrawContext.state.currentSelectionSkRect) {
+              skiaDrawContext.commands.setSelectionRect(
                 Skia.XYWHRect(
-                  skiaDrawContext.drawState.currentSelectionSkRect.x,
-                  skiaDrawContext.drawState.currentSelectionSkRect.y,
-                  e.x - skiaDrawContext.drawState.currentSelectionSkRect.x,
-                  e.y - skiaDrawContext.drawState.currentSelectionSkRect.y
+                  skiaDrawContext.state.currentSelectionSkRect.x,
+                  skiaDrawContext.state.currentSelectionSkRect.y,
+                  e.x - skiaDrawContext.state.currentSelectionSkRect.x,
+                  e.y - skiaDrawContext.state.currentSelectionSkRect.y
                 )
               );
             }
@@ -136,22 +131,22 @@ export default function skiaDrawGesture() {
       skiaPrevPointRef.current = Skia.Point(e.x, e.y);
     })
     .onEnd(e => {
-      switch (noteUIContext.noteUIState.noteUIMenu) {
+      switch (noteUIContext.state.noteMenu) {
         case 'selection': {
-          if (skiaDrawContext.drawState.currentSelectionSkRect) {
+          if (skiaDrawContext.state.currentSelectionSkRect) {
             // Find skiaObjects within the bounds of the skiaRect
             const skiaObjectsInRect = findSkiaObjectsInRect(
-              skiaDrawContext.drawState.currentSelectionSkRect,
-              skiaDrawContext.drawState.skObjects
+              skiaDrawContext.state.currentSelectionSkRect,
+              skiaDrawContext.state.skObjects
             );
             // If there are skiaObjects in the rect, set them as selectedSkiaObjects
             if (skiaObjectsInRect) {
-              skiaDrawContext.drawCommands.setSelectedSkiaObjects(
+              skiaDrawContext.commands.setSelectedSkiaObjects(
                 ...skiaObjectsInRect
               );
             }
             // Otherwise, the selection rect is undefined
-            skiaDrawContext.drawCommands.setSelectionRect(undefined);
+            skiaDrawContext.commands.setSelectionRect(undefined);
           }
           break;
         }

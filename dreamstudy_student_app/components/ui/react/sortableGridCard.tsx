@@ -9,7 +9,7 @@ const DUMMY_DATA = Array.from(
   (_, index) => `Item ${index + 1}`
 );
 
-export default function GridCard() {
+export default function SortableGridCard() {
   // Render each item as a SortableGridRenderItem
   const renderGridItem = useCallback<SortableGridRenderItem<string>>(
     ({ item }) => (

@@ -18,7 +18,7 @@ import {
 import React, { useEffect, useMemo, useState } from 'react';
 import { Gesture } from 'react-native-gesture-handler';
 import { Card } from '../react/card';
-import { NoteToolbarCard } from '../react/notes/noteToolbarCard';
+import { NoteToolbarCard } from '../react/notes/toolbar/noteToolbarCard';
 import { SkiaGestureCard } from './skiaGestureCard';
 import { SkiaSelectionFrame } from './skiaSelectionFrame';
 
@@ -33,11 +33,11 @@ export default function SkiaNote({ style }: CanvasProps) {
   const { ref: canvasRef, size: canvasSize } = useCanvasSize();
 
   const [skiaObjects, setSkiaObjects] = useState(
-    skiaDrawContext.drawState.skObjects
+    skiaDrawContext.state.skObjects
   );
   const [selectedSkiaObjects, setSelectedSkiaObjects] = useState<SkObjects>();
   const [skiaBackgroundColor, setBackgroundColor] = useState(
-    skiaDrawContext.drawState.skBackgroundColor
+    skiaDrawContext.state.skBackgroundColor
   );
   const [selectionSkiaRect, setSelectionSkiaRect] = useState<SkRect>();
 
@@ -149,7 +149,7 @@ export default function SkiaNote({ style }: CanvasProps) {
         userSelect="auto"
         enableContextMenu={true}
         touchAction="auto">
-        <Fill color={skiaDrawContext.drawState.skBackgroundColor} />
+        <Fill color={skiaDrawContext.state.skBackgroundColor} />
         {renderSkiaComponents}
         {selectedSkiaObjects ? (
           <SkiaSelectionFrame selectedSkiaObjects={selectedSkiaObjects} />

@@ -13,7 +13,7 @@ export type RevisionCardProps = {
 export const RevisionCard = memo(
   ({ data, onTap, ...otherProps }: RevisionCardProps) => {
     return (
-      <Card style={cardStyles.revision}>
+      <Card style={cardStyles.revisionCard}>
         <TextCard>{data.revisionTitle}</TextCard>
         <TextCard>{data.revisionLevel}</TextCard>
         <TextCard>{data.revisionSubject}</TextCard>

@@ -1,10 +1,10 @@
 import {
-  SkiaDrawContextType,
-  SkiaDrawState,
-  SkiaObject,
-  SkiaPathType,
-  SkiaResizeMode,
-  SkObjects
+    SkiaDrawContextType,
+    SkiaDrawState,
+    SkiaObject,
+    SkiaPathType,
+    SkiaResizeMode,
+    SkObjects
 } from '@/utils/types/skia/skiaDrawTypes';
 import { SkColor, Skia, SkRect, SkSize } from '@shopify/react-native-skia';
 import React, { PropsWithChildren, useMemo } from 'react';
@@ -86,8 +86,8 @@ const createSkiaDrawProviderValue = (): SkiaDrawContextType => {
     }
   };
   return {
-    drawState: skDrawState,
-    drawCommands: skiaCommands,
+    state: skDrawState,
+    commands: skiaCommands,
     addDrawListener: (cds: (drawState: SkiaDrawState) => void) => {
       skiaListeners.push(cds);
       return () => skiaListeners.splice(skiaListeners.indexOf(cds), 1);
