@@ -1,30 +1,30 @@
 import {
-  SkColor,
-  SkImage,
-  SkPath,
-  SkRect,
-  SkSize
+    SkColor,
+    SkImage,
+    SkPath,
+    SkRect,
+    SkSize
 } from '@shopify/react-native-skia';
 
 export type SkiaDrawType = 'path' | 'image';
 
 export type SkiaPathType = 'normal' | 'dashed' | 'discreted';
 
-export type SkiaDrawObject = {
+export type SkiaObject = {
   skiaDrawingType: SkiaDrawType;
-  skiaPath: SkPath;
+  path: SkPath;
 } & (
   | {
       skiaType: 'path';
-      skiaPathType: SkiaPathType;
-      skiaPath: SkPath;
+      pathType: SkiaPathType;
+      path: SkPath;
       color: SkColor;
       size: SkSize;
     }
   | { skiaType: 'image'; path: SkPath; image: SkImage }
 );
 
-export type SkiaDrawObjects = SkiaDrawObject[];
+export type SkObjects = SkiaObject[];
 
 export type SkiaResizeMode =
   | 'topLeft'
@@ -33,33 +33,33 @@ export type SkiaResizeMode =
   | 'bottomRight';
 
 export type SkiaDrawState = {
-  size: SkSize;
-  color: SkColor;
-  pathType: SkiaPathType;
-  drawObjects: SkiaDrawObjects;
-  selectedDrawObjects: SkiaDrawObjects;
-  currentSelectionRect: SkRect | undefined;
-  resizeMode: SkiaResizeMode | undefined;
-  backgroundColor: SkColor;
+  skSize: SkSize;
+  skColor: SkColor;
+  skPathType: SkiaPathType;
+  skObjects: SkObjects;
+  selectedSkObjects: SkObjects;
+  currentSelectionSkRect: SkRect | undefined;
+  skResizeMode: SkiaResizeMode | undefined;
+  skBackgroundColor: SkColor;
 };
 
 export type SkiaDrawCommands = {
-  addDrawObject: (drawObject: SkiaDrawObject) => void;
-  setSelectedDrawObjects: (...drawObjects: SkiaDrawObjects) => void;
+  addSkiaObject: (drawObject: SkiaObject) => void;
+  setSelectedSkiaObjects: (...drawObjects: SkObjects) => void;
   setPathType: (type: SkiaPathType) => void;
   setColor: (color: SkColor) => void;
   setBackgroundColor: (backgroundColor: SkColor) => void;
   setSelectionRect: (selectionRect: SkRect | undefined) => void;
   setResizeMode: (resizeMode: SkiaResizeMode | undefined) => void;
   setSize: (size: SkSize) => void;
-  deleteSelectedDrawObjects: () => void;
-  deleteAllDrawObjects: () => void;
+  deleteSelectedSkiaObjects: () => void;
+  deleteAllSkiaObjects: () => void;
   cleanUnecessarySkiaObjects: () => Promise<void>;
 };
 
 export type SkiaDrawContextType = {
-  drawState: SkiaDrawState;
-  drawCommands: SkiaDrawCommands;
+  state: SkiaDrawState;
+  commands: SkiaDrawCommands;
   addDrawListener: (
     drawListener: (drawState: SkiaDrawState) => void
   ) => () => void;

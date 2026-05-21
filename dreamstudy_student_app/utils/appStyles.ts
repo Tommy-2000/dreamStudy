@@ -1,3 +1,4 @@
+import type { CalendarTheme } from '@marceloterreiro/flash-calendar';
 import { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
 import { DrawerNavigationOptions } from '@react-navigation/drawer';
 import { HeaderOptions } from '@react-navigation/elements';
@@ -6,6 +7,7 @@ import Drawer from 'expo-router/drawer';
 import { Platform } from 'react-native';
 import { StyleSheet, withUnistyles } from 'react-native-unistyles';
 import { appValues } from './appConstants';
+import { calendarCardTokenColours as calendarTokenColours } from './appTokenColours';
 
 // Screen Styling
 
@@ -127,7 +129,8 @@ export const tabScreenOptions: BottomTabNavigationOptions & HeaderOptions = {
 export const drawerScreenOptions: DrawerNavigationOptions & HeaderOptions = {
   drawerPosition: 'right',
   drawerType: 'front',
-  drawerStatusBarAnimation: 'fade'
+  drawerStatusBarAnimation: 'fade',
+  headerShown: false
 };
 
 // Navigation Styling
@@ -137,6 +140,7 @@ export const drawerScreenOptions: DrawerNavigationOptions & HeaderOptions = {
 
 export const RootTabs = withUnistyles(Tabs, theme => ({
   screenOptions: {
+    header: () => {},
     tabBarActiveTintColor: theme.colors.activeTint,
     tabBarInactiveTintColor: theme.colors.typography,
     sceneStyle: {
@@ -176,20 +180,7 @@ export const navigationStyles = StyleSheet.create({
 });
 
 export const cardStyles = StyleSheet.create(theme => ({
-  default: {
-    borderRadius: 20
-  },
-  parallaxScrollHeader: {
-    height: appValues.parallaxHeaderHeight,
-    overflow: 'hidden'
-  },
-  parallaxScrollContent: {
-    borderRadius: 20,
-    flex: 1,
-    padding: 32,
-    gap: 16
-  },
-  flashScroll: {
+  defaultCard: {
     borderRadius: 20
   },
   modalHeader: {
@@ -223,49 +214,181 @@ export const cardStyles = StyleSheet.create(theme => ({
     padding: 5,
     width: '90%'
   },
-  student: {
+  calendarCardContainer: {
+    height: '100%',
+    width: '100%',
+    borderRadius: 20,
+    padding: 20,
+    flex: 1,
+    backgroundColor: theme.colors.background
+  },
+  studentCard: {
     borderRadius: 20,
     padding: 10,
     flex: 1,
     backgroundColor: theme.colors.accents.apple
   },
-  teacher: {
+  teacherCard: {
     borderRadius: 20,
     padding: 10,
     flex: 1,
     backgroundColor: theme.colors.accents.banana
   },
-  supportAssistant: {
+  supportAssistantCard: {
     borderRadius: 20,
     padding: 10,
     flex: 1,
     backgroundColor: theme.colors.accents.pumpkin
   },
-  revision: {
+  revisionCard: {
     borderRadius: 20,
     padding: 10,
     flex: 1,
     backgroundColor: theme.colors.accents.storm
+  },
+  parallaxScrollHeaderCard: {
+    height: appValues.parallaxHeaderHeight,
+    overflow: 'hidden'
+  },
+  parallaxScrollCard: {
+    borderRadius: 20,
+    flex: 1,
+    padding: 32,
+    gap: 16
+  },
+  scrollCard: {
+    borderRadius: 20,
+    flex: 1,
+    padding: 32,
+    gap: 16
+  },
+  flashScrollCard: {
+    borderRadius: 20,
+    flex: 1,
+    padding: 32,
+    gap: 16
+  },
+  drawingToolbar: {
+    borderRadius: 10,
+    flex: 1,
+    padding: 10,
+    height: 50,
+    width: '100%'
   }
 }));
 
 export const buttonStyles = StyleSheet.create(theme => ({
   primaryButton: {
-    backgroundColor: theme.colors.accents.apple,
+    backgroundColor: theme.colors.background,
     borderRadius: 10,
-    elevation: 6
+    padding: 5,
+    elevation: 5
   },
   secondaryButton: {
     backgroundColor: theme.colors.background,
     borderRadius: 10,
-    elevation: 6
+    padding: 5,
+    elevation: 5
+  },
+  accentButton: {
+    backgroundColor: theme.colors.accents.apple,
+    borderRadius: 10,
+    padding: 5,
+    elevation: 5
   },
   aacButton: {
     backgroundColor: theme.colors.background,
     borderRadius: 10,
+    padding: 10,
+    elevation: 10
+  },
+  iconButton: {
+    height: 20,
+    backgroundColor: theme.colors.background,
+    borderRadius: 10,
+    padding: 10,
+    elevation: 10
+  },
+  drawToolbarButton: {
+    backgroundColor: theme.colors.background,
+    borderRadius: 10,
+    padding: 10,
+    elevation: 10
+  },
+  colorPickerToolbarButton: {
+    backgroundColor: theme.colors.background,
+    borderRadius: 10,
+    padding: 10,
+    elevation: 10
+  },
+  selectionToolbarButton: {
+    backgroundColor: theme.colors.background,
+    borderRadius: 10,
+    padding: 10,
+    elevation: 10
+  },
+  deleteToolbarButton: {
+    backgroundColor: theme.colors.background,
+    borderRadius: 10,
+    padding: 10,
+    elevation: 10
+  },
+  saveDrawingToolbarButton: {
+    backgroundColor: theme.colors.background,
+    borderRadius: 10,
+    padding: 10,
     elevation: 10
   }
 }));
+
+export const calendarTheme: CalendarTheme = {
+  rowMonth: {
+    container: {
+      backgroundColor: calendarTokenColours.colours.accent,
+      height: 40
+    },
+    content: {
+      color: calendarTokenColours.colours.content.inverse.primary,
+      fontSize: 17,
+      width: 200,
+      textAlign: 'center'
+    }
+  },
+  itemWeekName: { content: { color: calendarTokenColours.colours.accent } },
+  itemDay: {
+    base: () => ({
+      container: {
+        padding: 5,
+        borderRadius: 10
+      }
+    }),
+    today: () => ({
+      container: {
+        borderWidth: 2,
+        borderColor: calendarTokenColours.colours.secondary
+      }
+    }),
+    idle: ({ isDifferentMonth }) => ({
+      content: isDifferentMonth
+        ? {
+            color: calendarTokenColours.colours.content.disabled
+          }
+        : undefined
+    }),
+    active: () => ({
+      container: {
+        backgroundColor: calendarTokenColours.colours.accent,
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius: 10
+      },
+      content: {
+        color: calendarTokenColours.colours.content.inverse.primary
+      }
+    })
+  }
+};
 
 export const imageStyles = StyleSheet.create({
   smallImage: {

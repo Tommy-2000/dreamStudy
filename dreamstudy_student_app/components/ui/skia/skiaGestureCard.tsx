@@ -1,34 +1,45 @@
-import { Canvas } from '@shopify/react-native-skia';
-import { useContextBridge } from 'its-fine';
+import { CanvasProps } from '@shopify/react-native-skia';
+import { PropsWithChildren } from 'react';
 import {
   ComposedGesture,
   GestureDetector,
   GestureHandlerRootView,
   GestureType
 } from 'react-native-gesture-handler';
-import { Card } from '../react/card';
-import { SkiaCardProps } from './skiaCard';
-
-export type SkiaGestureCardProps = {
-  gesture: ComposedGesture | GestureType; // Any gesture type can be passed as a prop to this component
-} & SkiaCardProps;
+import {
+  TouchAction,
+  UserSelect
+} from 'react-native-gesture-handler/lib/typescript/handlers/gestureHandlerCommon';
+import { SkiaCard } from './skiaCard';
 
 export function SkiaGestureCard({
-  style: canvasStyle,
-  style: gestureDetectorStyle,
+  ref,
+  style,
   gesture,
+  userSelect,
+  enableContextMenu,
+  touchAction,
   children
-}: SkiaGestureCardProps) {
-  const SkiaContextBridge = useContextBridge();
+}: {
+  gesture: ComposedGesture | GestureType; // Any gesture type can be passed as a prop to this component
+  userSelect?: UserSelect | undefined; // userSelect, enableContextMenu and touchAction are web-only gesture properties
+  enableContextMenu?: boolean | undefined;
+  touchAction?: TouchAction;
+} & CanvasProps &
+  PropsWithChildren) {
   return (
-    <Card>
-      <GestureHandlerRootView style={gestureDetectorStyle}>
-        <GestureDetector gesture={gesture}>
-          <Canvas style={canvasStyle}>
-            <SkiaContextBridge>{children}</SkiaContextBridge>
-          </Canvas>
+    <>
+      <GestureHandlerRootView>
+        <GestureDetector
+          gesture={gesture}
+          userSelect={userSelect}
+          enableContextMenu={enableContextMenu}
+          touchAction={touchAction}>
+          <SkiaCard ref={ref} style={style}>
+            {children}
+          </SkiaCard>
         </GestureDetector>
       </GestureHandlerRootView>
-    </Card>
+    </>
   );
 }

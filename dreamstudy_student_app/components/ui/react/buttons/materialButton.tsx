@@ -1,13 +1,7 @@
-import { GestureResponderEvent, TouchableOpacity } from 'react-native';
+import { MaterialButtonProps } from '@/utils/types/props/buttonProps';
+import { PressableScale } from 'pressto';
 import { Card } from '../card';
-import { TextCard } from '../cards/textCard';
-
-export interface MaterialButtonProps {
-  onPress: ((event: GestureResponderEvent) => void) | undefined;
-  style: {};
-  title: string;
-  accessibilityHint: string;
-}
+import { TextCard } from '../textCard';
 
 export function MaterialButton({
   onPress,
@@ -16,7 +10,7 @@ export function MaterialButton({
   accessibilityHint
 }: MaterialButtonProps) {
   return (
-    <TouchableOpacity
+    <PressableScale
       onPress={onPress}
       style={style}
       accessibilityHint={accessibilityHint}
@@ -25,6 +19,6 @@ export function MaterialButton({
       <Card>
         <TextCard>{title}</TextCard>
       </Card>
-    </TouchableOpacity>
+    </PressableScale>
   );
 }

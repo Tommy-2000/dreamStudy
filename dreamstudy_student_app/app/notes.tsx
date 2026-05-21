@@ -1,43 +1,40 @@
 import { Image } from 'expo-image';
 
 import { Card } from '@/components/ui/react/card';
-import ParallaxScrollCard from '@/components/ui/react/cards/parallaxScrollCard';
-import { TextCard } from '@/components/ui/react/cards/textCard';
-import { RenderSkia } from '@/components/ui/skia/renderSkia';
+import { SkiaNoteContainer } from '@/components/ui/react/notes/skiaNoteContainer';
+import ParallaxScrollCard from '@/components/ui/react/parallaxScrollCard';
+import { TextCard } from '@/components/ui/react/textCard';
+import { imagePlaceholderHash } from '@/utils/appConstants';
 import { notesScreenStyles } from '@/utils/appStyles';
+import { FiberProvider } from 'its-fine';
 import React from 'react';
-import { ActivityIndicator } from 'react-native';
-
-// On web, any Skia components have to wait before the wasm file has loaded to properly render
-// const SkiaIridescent = React.lazy(
-//   () => import('@/components/ui/skia/skiaIridescent')
-// );
-
-const SkiaNotepad = React.lazy(
-  () => import('@/components/ui/skia/skiaNotepad')
-);
 
 export default function NotesScreen() {
   return (
-    <ParallaxScrollCard
-      headerBackgroundColor={{}}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={notesScreenStyles.reactLogo}
-        />
-      }>
-      <Card style={notesScreenStyles.titleContainer}>
-        <TextCard type="title">Notes</TextCard>
-      </Card>
-      <TextCard>This screen renders a Skia component</TextCard>
-      <Card style={{ height: 500 }}>
-        {/* RenderSkia tells React to wait before the .wasm file for Skia is properly loaded on the browser */}
-        <React.Suspense fallback={<ActivityIndicator />}>
-          <RenderSkia />
-          <SkiaNotepad />
-        </React.Suspense>
-      </Card>
-    </ParallaxScrollCard>
+    // Wrap the root of each screen with FibreProviderto allow for context
+    //  to be shared between Skia components that are rendered on the screen
+    <FiberProvider>
+      <ParallaxScrollCard
+        headerBackgroundColor={{}}
+        headerImage={
+          // When handling images from the assets folder, render the placeholder hash first
+          <Image
+            source={require('@/assets/images/partial-react-logo.png')}
+            placeholder={imagePlaceholderHash}
+            contentFit="cover"
+            transition={1000}
+            style={notesScreenStyles.reactLogo}
+          />
+        }>
+        <Card style={notesScreenStyles.titleContainer}>
+          <TextCard type="title">Notes</TextCard>
+        </Card>
+        <TextCard>
+          The SkiaNoteContainer component renders a Skia component inside a
+          React Suspense component
+        </TextCard>
+        <SkiaNoteContainer />
+      </ParallaxScrollCard>
+    </FiberProvider>
   );
 }

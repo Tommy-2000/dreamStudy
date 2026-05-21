@@ -1,18 +1,15 @@
-import { Canvas } from '@shopify/react-native-skia';
+import { Canvas, CanvasProps } from '@shopify/react-native-skia';
 import { useContextBridge } from 'its-fine';
 import { PropsWithChildren } from 'react';
-import { type ViewProps } from 'react-native';
-import { Card } from '../react/card';
 
-export type SkiaCardProps = ViewProps & PropsWithChildren; // Children props are needed for child components
-
-export function SkiaCard({ style: canvasStyle, children }: SkiaCardProps) {
+// Any Skia Canvas components with children will have context shared between them using the contextBridge
+export function SkiaCard(
+  { ref, style, children }: CanvasProps & PropsWithChildren // Children props are needed for child components
+) {
   const SkiaContextBridge = useContextBridge();
   return (
-    <Card>
-      <Canvas style={canvasStyle}>
-        <SkiaContextBridge>{children}</SkiaContextBridge>
-      </Canvas>
-    </Card>
+    <Canvas ref={ref} style={style}>
+      <SkiaContextBridge>{children}</SkiaContextBridge>
+    </Canvas>
   );
 }
