@@ -3,7 +3,7 @@ import { RevisionContent } from '@/utils/types/zod/models';
 import { memo, PropsWithChildren } from 'react';
 import Sortable from 'react-native-sortables';
 import { Card } from '../card';
-import { TextCard } from './textCard';
+import { TextCard } from '../textCard';
 
 export type RevisionCardProps = {
   data: RevisionContent;
@@ -13,7 +13,7 @@ export type RevisionCardProps = {
 export const RevisionCard = memo(
   ({ data, onTap, ...otherProps }: RevisionCardProps) => {
     return (
-      <Card style={cardStyles.revision}>
+      <Card style={cardStyles.revisionCard}>
         <TextCard>{data.revisionTitle}</TextCard>
         <TextCard>{data.revisionLevel}</TextCard>
         <TextCard>{data.revisionSubject}</TextCard>

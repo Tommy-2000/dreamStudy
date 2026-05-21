@@ -25,6 +25,8 @@ expo-env.d.ts
 npm-debug.*
 yarn-debug.*
 yarn-error.*
+pnpm-debug.*
+pnpm-error.*
 
 # macOS
 .DS_Store
@@ -49,12 +51,5 @@ app-example
 /ios
 /android
 
-# dockerfile
-Dockerfile
-
 # Env security tokens -- DO NOT COMMIT THIS!
 .env.local
-
-
-# Ignore api files for now
-/services

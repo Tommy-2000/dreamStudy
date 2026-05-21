@@ -1,12 +1,12 @@
 import { SkRect } from '@shopify/react-native-skia';
-import { SkiaObjects } from '../../types/skia/skiaDrawTypes';
+import { SkObjects } from '../../types/skia/skiaDrawTypes';
 import getSkiaBounds from './getSkiaBounds';
 
 export default function findSkiaObjectsInRect(
   skiaRect: SkRect,
-  skiaObjects: SkiaObjects
+  skiaObjects: SkObjects
 ) {
-  const retrievedSkiaObjects: SkiaObjects = [];
+  const retrievedSkiaObjects: SkObjects = [];
   const normalisedSkiaRect: SkRect = {
     x: skiaRect.width < 0 ? skiaRect.x + skiaRect.width : skiaRect.x,
     y: skiaRect.height < 0 ? skiaRect.y + skiaRect.height : skiaRect.y,

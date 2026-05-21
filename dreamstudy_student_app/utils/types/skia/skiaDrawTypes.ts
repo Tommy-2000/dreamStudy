@@ -1,9 +1,9 @@
 import {
-  SkColor,
-  SkImage,
-  SkPath,
-  SkRect,
-  SkSize
+    SkColor,
+    SkImage,
+    SkPath,
+    SkRect,
+    SkSize
 } from '@shopify/react-native-skia';
 
 export type SkiaDrawType = 'path' | 'image';
@@ -12,19 +12,19 @@ export type SkiaPathType = 'normal' | 'dashed' | 'discreted';
 
 export type SkiaObject = {
   skiaDrawingType: SkiaDrawType;
-  skiaPath: SkPath;
+  path: SkPath;
 } & (
   | {
       skiaType: 'path';
-      skiaPathType: SkiaPathType;
-      skiaPath: SkPath;
+      pathType: SkiaPathType;
+      path: SkPath;
       color: SkColor;
       size: SkSize;
     }
   | { skiaType: 'image'; path: SkPath; image: SkImage }
 );
 
-export type SkiaObjects = SkiaObject[];
+export type SkObjects = SkiaObject[];
 
 export type SkiaResizeMode =
   | 'topLeft'
@@ -33,19 +33,19 @@ export type SkiaResizeMode =
   | 'bottomRight';
 
 export type SkiaDrawState = {
-  size: SkSize;
-  color: SkColor;
-  pathType: SkiaPathType;
-  skiaObjects: SkiaObjects;
-  selectedSkiaObjects: SkiaObjects;
-  currentSelectionRect: SkRect | undefined;
-  resizeMode: SkiaResizeMode | undefined;
-  backgroundColor: SkColor;
+  skSize: SkSize;
+  skColor: SkColor;
+  skPathType: SkiaPathType;
+  skObjects: SkObjects;
+  selectedSkObjects: SkObjects;
+  currentSelectionSkRect: SkRect | undefined;
+  skResizeMode: SkiaResizeMode | undefined;
+  skBackgroundColor: SkColor;
 };
 
 export type SkiaDrawCommands = {
   addSkiaObject: (drawObject: SkiaObject) => void;
-  setSelectedSkiaObjects: (...drawObjects: SkiaObjects) => void;
+  setSelectedSkiaObjects: (...drawObjects: SkObjects) => void;
   setPathType: (type: SkiaPathType) => void;
   setColor: (color: SkColor) => void;
   setBackgroundColor: (backgroundColor: SkColor) => void;
@@ -58,8 +58,8 @@ export type SkiaDrawCommands = {
 };
 
 export type SkiaDrawContextType = {
-  drawState: SkiaDrawState;
-  drawCommands: SkiaDrawCommands;
+  state: SkiaDrawState;
+  commands: SkiaDrawCommands;
   addDrawListener: (
     drawListener: (drawState: SkiaDrawState) => void
   ) => () => void;

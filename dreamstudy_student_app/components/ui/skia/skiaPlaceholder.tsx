@@ -5,6 +5,7 @@
  */
 
 import {
+  CanvasProps,
   Fill,
   Shader,
   Skia,
@@ -48,12 +49,13 @@ vec4 main(vec2 fragCoord) {
 // Ensure that the SkRuntimeEffect type has no nulls
 type SkRuntimeEffectNN = NonNullable<SkRuntimeEffect>;
 
-export default function SkiaIridescent({
+export default function SkiaPlaceholder({
+  style,
   color = [1, 1, 1],
   speed = 1.0,
   amplitude = 0.1,
   ...props
-}: {
+}: CanvasProps & {
   color?: [number, number, number];
   speed?: number;
   amplitude?: number;
@@ -78,12 +80,10 @@ export default function SkiaIridescent({
   }, [clock, width, height]);
 
   return (
-    <SkiaCard style={{ flex: 1 }}>
+    <SkiaCard style={style}>
       <Fill>
         <Shader source={skiaSource as SkRuntimeEffectNN} uniforms={uniforms} />
       </Fill>
     </SkiaCard>
   );
 }
-
-SkiaIridescent.displayName = 'Iridescence';

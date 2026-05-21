@@ -1,9 +1,11 @@
-import { SkiaObjects } from '../../types/skia/skiaDrawTypes';
+import { Skia } from '@shopify/react-native-skia';
+import { SkObjects } from '../../types/skia/skiaDrawTypes';
 import getSkiaBounds from './getSkiaBounds';
 
-export const getBoundingBox = (skiaDrawObjects: SkiaObjects) => {
+export const getBoundingBox = (skiaDrawObjects: SkObjects) => {
   if (skiaDrawObjects.length === 0) {
-    return undefined;
+    // Returning an empty SkiaRect is better than undefined
+    return Skia.XYWHRect(0, 0, 0, 0);
   }
 
   const skiaBoundingBox = {

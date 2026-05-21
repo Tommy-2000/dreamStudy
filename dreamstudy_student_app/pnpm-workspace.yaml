@@ -1,0 +1,11 @@
+allowBuilds:
+  '@react-native-ama/core': true
+  '@sentry/cli': true
+  '@shopify/react-native-skia': true
+  unrs-resolver: true
+
+blockExoticSubdeps: true
+
+minimumReleaseAge: 1440
+
+trustPolicy: no-downgrade

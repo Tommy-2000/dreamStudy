@@ -1,13 +1,13 @@
 import { buttonStyles, calendarTheme, cardStyles } from '@/utils/appStyles';
 import {
-  Calendar,
-  useCalendar,
-  type CalendarProps as FlashCalendarProps
+    Calendar,
+    useCalendar,
+    type CalendarProps as FlashCalendarProps
 } from '@marceloterreiro/flash-calendar';
 import { memo, useMemo } from 'react';
 import { MaterialIconButton } from '../buttons/materialIconButton';
 import { Card } from '../card';
-import { TextCard } from '../cards/textCard';
+import { TextCard } from '../textCard';
 
 export interface CalendarCardProps extends FlashCalendarProps {
   onPastMonthPress: () => void;
@@ -25,7 +25,7 @@ export const CalendarCard = memo((calendarProps: CalendarCardProps) => {
   }, [weeksList]);
 
   return (
-    <Card style={cardStyles.calendarContainer}>
+    <Card style={cardStyles.calendarCardContainer}>
       <Calendar.VStack>
         <Calendar.HStack
           alignItems="center"

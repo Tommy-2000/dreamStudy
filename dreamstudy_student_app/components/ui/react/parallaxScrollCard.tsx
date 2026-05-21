@@ -1,16 +1,16 @@
 import type { PropsWithChildren, ReactElement } from 'react';
 import Animated, {
-  interpolate,
-  useAnimatedRef,
-  useAnimatedStyle,
-  useScrollOffset
+    interpolate,
+    useAnimatedRef,
+    useAnimatedStyle,
+    useScrollOffset
 } from 'react-native-reanimated';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { appValues } from '@/utils/appConstants';
 import { cardStyles } from '@/utils/appStyles';
 import { StyleProp, ViewProps } from 'react-native';
-import { Card } from '../card';
+import { Card } from './card';
 
 type ParallaxScrollCardProps = {
   headerBackgroundColor: StyleProp<ViewProps>;
@@ -67,7 +67,7 @@ export default function ParallaxScrollCard({
         style={[parallaxScroll.parallaxHeader, headerAnimatedStyle]}>
         {headerImage}
       </Animated.View>
-      <Card style={cardStyles.parallaxScrollContent}>{children}</Card>
+      <Card style={cardStyles.parallaxScrollCard}>{children}</Card>
     </Animated.ScrollView>
   );
 }
