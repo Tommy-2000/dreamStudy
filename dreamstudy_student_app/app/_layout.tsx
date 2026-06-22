@@ -3,16 +3,16 @@ import { Drawer } from 'expo-router/drawer';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
 
+import * as Sentry from '@sentry/react-native';
+import { Tabs } from 'expo-router';
+import React from 'react';
+import { Platform } from 'react-native';
 import {
   drawerScreenOptions,
   RootDrawer,
   RootTabs,
   tabScreenOptions
-} from '@/utils/appStyles';
-import * as Sentry from '@sentry/react-native';
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
+} from '../utils/appStyles';
 
 // Initialise the Sentry SDK for performance and error logging
 Sentry.init({
@@ -117,7 +117,24 @@ export default Sentry.wrap(function RootLayout() {
               title: 'Support'
             }}
           />
+          <Tabs.Screen
+            name="user"
+            options={{
+              tabBarIcon: ({ focused, color, size }) => {
+                if (focused) {
+                  return <Ionicons name="person" size={size} color={color} />;
+                } else {
+                  return (
+                    <Ionicons name="person-outline" size={size} color={color} />
+                  );
+                }
+              },
+              tabBarLabel: 'User',
+              title: 'User'
+            }}
+          />
         </RootTabs>
+        {/* <GuideButton /> */}
         <StatusBar style="auto" />
       </React.Fragment>
     );
@@ -207,6 +224,7 @@ export default Sentry.wrap(function RootLayout() {
           }}
         />
       </RootDrawer>
+      {/* <GuideButton /> */}
       <StatusBar style="auto" />
     </React.Fragment>
   );

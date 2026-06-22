@@ -1,5 +1,5 @@
 import { SkPoint } from '@shopify/react-native-skia';
-import { SkObjects, SkiaResizeMode } from '../../types/skia/skiaDrawTypes';
+import { SkObjects, SkiaResizeMode } from '../../types/skia/skiaDrawProps';
 import { getBoundingBox } from './getSkiaBoundingBox';
 
 const hitSlop = 8;

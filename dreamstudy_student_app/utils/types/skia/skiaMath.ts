@@ -1,4 +1,5 @@
 import { mix } from '@shopify/react-native-skia';
+import { rgbaColor } from 'react-native-reanimated/lib/typescript/Colors';
 
 export const TAU = Math.PI * 2;
 
@@ -51,9 +52,13 @@ export const normalizeRad = (value: number) => {
   return rest > 0 ? rest : TAU + rest;
 };
 
-//   export const polar2coord = (theta: number, radius: number, maxRadius: number) => {
-//     const h = normalizeRad(theta) / TAU;
-//     const s = quadraticIn(radius / maxRadius);
-//     const { r, g, b } = hsv2rgb(h, s, 1);
-//     return rgbaColor(r, g, b, 1);
-//   };
+export const polar2coord = (
+  theta: number,
+  radius: number,
+  maxRadius: number
+) => {
+  const h = normalizeRad(theta) / TAU;
+  const s = quadraticIn(radius / maxRadius);
+  const { r, g, b } = hsv2rgb(h, s, 1);
+  return rgbaColor(r, g, b, 1); // This method is imported from Reanimated and not Skia
+};

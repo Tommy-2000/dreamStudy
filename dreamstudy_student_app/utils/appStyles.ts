@@ -6,7 +6,6 @@ import { Tabs } from 'expo-router';
 import Drawer from 'expo-router/drawer';
 import { Platform } from 'react-native';
 import { StyleSheet, withUnistyles } from 'react-native-unistyles';
-import { appValues } from './appConstants';
 import { calendarCardTokenColours as calendarTokenColours } from './appTokenColours';
 
 // Screen Styling
@@ -39,6 +38,15 @@ export const rootScreenStyles = StyleSheet.create({
 });
 
 export const homeScreenStyles = StyleSheet.create({
+  headerImage: {
+    bottom: -90,
+    left: -35,
+    position: 'absolute'
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    gap: 8
+  },
   titleStyle: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -47,13 +55,6 @@ export const homeScreenStyles = StyleSheet.create({
   bodyStyle: {
     gap: 8,
     marginBottom: 8
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute'
   }
 });
 
@@ -66,6 +67,9 @@ export const revisionScreenStyles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
     gap: 8
+  },
+  revisionFilterButtons: {
+    flexDirection: 'row'
   }
 });
 
@@ -78,13 +82,6 @@ export const notesScreenStyles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
     gap: 8
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute'
   }
 });
 
@@ -222,7 +219,7 @@ export const cardStyles = StyleSheet.create(theme => ({
     flex: 1,
     backgroundColor: theme.colors.background
   },
-  studentCard: {
+  studentUserCard: {
     borderRadius: 20,
     padding: 10,
     flex: 1,
@@ -242,16 +239,16 @@ export const cardStyles = StyleSheet.create(theme => ({
   },
   revisionCard: {
     borderRadius: 20,
-    padding: 10,
+    padding: 20,
     flex: 1,
     backgroundColor: theme.colors.accents.storm
   },
-  parallaxScrollHeaderCard: {
-    height: appValues.parallaxHeaderHeight,
-    overflow: 'hidden'
+  parallaxScrollCardHeader: {
+    flex: 1
   },
-  parallaxScrollCard: {
-    borderRadius: 20,
+  parallaxScrollCardBody: {
+    backgroundColor: theme.colors.background,
+    borderRadius: 50,
     flex: 1,
     padding: 32,
     gap: 16
@@ -302,6 +299,16 @@ export const buttonStyles = StyleSheet.create(theme => ({
     padding: 10,
     elevation: 10
   },
+  guideButton: {
+    borderRadius: 30,
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 1,
+    width: 250,
+    padding: 20,
+    elevation: 20
+  },
   iconButton: {
     height: 20,
     backgroundColor: theme.colors.background,
@@ -309,32 +316,14 @@ export const buttonStyles = StyleSheet.create(theme => ({
     padding: 10,
     elevation: 10
   },
-  drawToolbarButton: {
+  toolbarButton: {
     backgroundColor: theme.colors.background,
     borderRadius: 10,
     padding: 10,
     elevation: 10
   },
-  colorPickerToolbarButton: {
-    backgroundColor: theme.colors.background,
-    borderRadius: 10,
-    padding: 10,
-    elevation: 10
-  },
-  selectionToolbarButton: {
-    backgroundColor: theme.colors.background,
-    borderRadius: 10,
-    padding: 10,
-    elevation: 10
-  },
-  deleteToolbarButton: {
-    backgroundColor: theme.colors.background,
-    borderRadius: 10,
-    padding: 10,
-    elevation: 10
-  },
-  saveDrawingToolbarButton: {
-    backgroundColor: theme.colors.background,
+  selectedToolbarButton: {
+    backgroundColor: theme.colors.accents.storm,
     borderRadius: 10,
     padding: 10,
     elevation: 10

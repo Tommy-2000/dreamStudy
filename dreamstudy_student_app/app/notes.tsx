@@ -1,13 +1,11 @@
-import { Image } from 'expo-image';
-
-import { Card } from '@/components/ui/react/card';
-import { SkiaNoteContainer } from '@/components/ui/react/notes/skiaNoteContainer';
-import ParallaxScrollCard from '@/components/ui/react/parallaxScrollCard';
-import { TextCard } from '@/components/ui/react/textCard';
-import { imagePlaceholderHash } from '@/utils/appConstants';
+import { Card } from '@/components/card';
+import ParallaxScrollCard from '@/components/parallaxScrollCard';
+import { SkiaGradientContainer } from '@/components/skiaGradientContainer';
+import { TextCard } from '@/components/textCard';
 import { notesScreenStyles } from '@/utils/appStyles';
 import { FiberProvider } from 'its-fine';
 import React from 'react';
+import { SkiaNoteContainer } from '../components/notes/skiaNoteContainer';
 
 export default function NotesScreen() {
   return (
@@ -16,19 +14,17 @@ export default function NotesScreen() {
     <FiberProvider>
       <ParallaxScrollCard
         headerBackgroundColor={{}}
-        headerImage={
-          // When handling images from the assets folder, render the placeholder hash first
-          <Image
-            source={require('@/assets/images/partial-react-logo.png')}
-            placeholder={imagePlaceholderHash}
-            contentFit="cover"
-            transition={1000}
-            style={notesScreenStyles.reactLogo}
-          />
-        }>
+        headerBackground={<SkiaGradientContainer />}>
         <Card style={notesScreenStyles.titleContainer}>
           <TextCard type="title">Notes</TextCard>
         </Card>
+        <TextCard>
+          The SkiaCarouselContainer component renders multiple Skia components
+          inside a React Suspense component
+        </TextCard>
+
+        {/* <SkiaNoteCarouselStack noteData={}/> */}
+
         <TextCard>
           The SkiaNoteContainer component renders a Skia component inside a
           React Suspense component

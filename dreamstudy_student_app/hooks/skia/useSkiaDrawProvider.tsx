@@ -1,19 +1,19 @@
 import {
-    SkiaDrawContextType,
-    SkiaDrawState,
-    SkiaObject,
-    SkiaPathType,
-    SkiaResizeMode,
-    SkObjects
-} from '@/utils/types/skia/skiaDrawTypes';
+  SkiaDrawContextProps,
+  SkiaDrawState,
+  SkiaObject,
+  SkiaPathPropType,
+  SkiaResizeMode,
+  SkObjects
+} from '@/utils/types/skia/skiaDrawProps';
 import { SkColor, Skia, SkRect, SkSize } from '@shopify/react-native-skia';
 import React, { PropsWithChildren, useMemo } from 'react';
 
-const createSkiaDrawProviderValue = (): SkiaDrawContextType => {
+const createSkiaDrawProviderValue = (): SkiaDrawContextProps => {
   const skDrawState: SkiaDrawState = {
     skSize: { height: 2, width: 2 },
     skColor: Skia.Color('#ffffff'),
-    skPathType: 'normal',
+    skPathPropType: 'normal',
     skObjects: [],
     selectedSkObjects: [],
     currentSelectionSkRect: undefined,
@@ -34,14 +34,14 @@ const createSkiaDrawProviderValue = (): SkiaDrawContextType => {
       skDrawState.selectedSkObjects = selectedSkDrawObjects;
       notifySkiaListeners(skDrawState);
     },
-    setPathType: (skPathType: SkiaPathType) => {
-      skDrawState.skPathType = skPathType;
+    setPathPropType: (skPathType: SkiaPathPropType) => {
+      skDrawState.skPathPropType = skPathType;
       notifySkiaListeners(skDrawState);
     },
     setColor: (skColor: SkColor) => {
       skDrawState.skColor = skColor;
       skDrawState.selectedSkObjects.forEach((d: SkiaObject) => {
-        if (d.skiaType === 'path') {
+        if (d.skiaPropType === 'path') {
           d.color = skColor;
         }
       });
@@ -54,7 +54,7 @@ const createSkiaDrawProviderValue = (): SkiaDrawContextType => {
     setSize: (skSize: SkSize) => {
       skDrawState.skSize = skSize;
       skDrawState.selectedSkObjects.forEach((o: SkiaObject) => {
-        if (o.skiaType === 'path') {
+        if (o.skiaPropType === 'path') {
           o.size = skSize;
         }
       });
@@ -95,7 +95,7 @@ const createSkiaDrawProviderValue = (): SkiaDrawContextType => {
   };
 };
 
-export const SkiaDrawContext = React.createContext<SkiaDrawContextType>(
+export const SkiaDrawContext = React.createContext<SkiaDrawContextProps>(
   createSkiaDrawProviderValue()
 );
 

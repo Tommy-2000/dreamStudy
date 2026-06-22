@@ -53,3 +53,4 @@ app-example
 
 # Env security tokens -- DO NOT COMMIT THIS!
 .env.local
+.env

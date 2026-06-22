@@ -8,4 +8,4 @@ blockExoticSubdeps: true
 
 minimumReleaseAge: 1440
 
-trustPolicy: no-downgrade
+# trustPolicy: no-downgrade

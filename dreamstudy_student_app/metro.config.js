@@ -6,6 +6,8 @@ const {
 // Returns the ExpoConfig with Sentry integrated
 const expoConfig = getSentryExpoConfig(__dirname);
 
+// expoConfig.resolver.unstable_enablePackageExports = true;
+
 // Adds support for `.wasm` so Skia can render on Web
 expoConfig.resolver.assetExts.push('wasm');
 

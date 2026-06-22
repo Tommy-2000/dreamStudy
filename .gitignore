@@ -1,4 +1,6 @@
 
 ## Ignore the other folders until they are ready to commit
-dreamstudy_teacher_app
-dreamstudy_azure
+dreamstudyTeacherApp
+DreamStudy
+dreamstudyStudentApp/.env
+dreamstudy_student_app/.env

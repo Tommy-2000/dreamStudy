@@ -1,5 +1,5 @@
 import { SkRect } from '@shopify/react-native-skia';
-import { SkObjects } from '../../types/skia/skiaDrawTypes';
+import { SkObjects } from '../../types/skia/skiaDrawProps';
 import getSkiaBounds from './getSkiaBounds';
 
 export default function findSkiaObjectsInRect(

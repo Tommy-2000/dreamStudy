@@ -1,5 +1,5 @@
 import { Skia } from '@shopify/react-native-skia';
-import { SkObjects } from '../../types/skia/skiaDrawTypes';
+import { SkObjects } from '../../types/skia/skiaDrawProps';
 import getSkiaBounds from './getSkiaBounds';
 
 export const getBoundingBox = (skiaDrawObjects: SkObjects) => {

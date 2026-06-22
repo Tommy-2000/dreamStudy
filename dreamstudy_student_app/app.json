@@ -22,7 +22,7 @@
       "bundleIdentifier": "com.dreamdivers.dreamstudy-student"
     },
     "web": {
-      "output": "single", // single allows for Metro to render the web build as a SPA (Single Page Application)
+      "output": "single",
       "bundler": "metro",
       "favicon": "./assets/images/favicon.png",
       "name": "dreamStudy - Student"
@@ -53,7 +53,12 @@
       ],
       "@sentry/react-native",
       "expo-background-task",
-      "expo-image"
+      "expo-image",
+      "react-native-enriched-markdown",
+      "expo-secure-store",
+      {
+        "configureAndroidBackup": true
+      }
     ],
     "experiments": {
       "typedRoutes": true,

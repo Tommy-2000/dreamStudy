@@ -1,6 +1,6 @@
 import type { SkRect } from '@shopify/react-native-skia';
 import { processTransform2d } from '@shopify/react-native-skia';
-import { SkObjects, SkiaResizeMode } from '../../types/skia/skiaDrawTypes';
+import { SkObjects, SkiaResizeMode } from '../../types/skia/skiaDrawProps';
 import { getBoundingBox as getSkiaBoundingBox } from './getSkiaBoundingBox';
 
 export const resizeElementsBy = (

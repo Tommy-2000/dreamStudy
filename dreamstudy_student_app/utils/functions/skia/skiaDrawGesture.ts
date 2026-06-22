@@ -1,4 +1,4 @@
-import { useNoteUIContext } from '@/hooks/react/useNoteUIContext';
+import { useNoteUIContext } from '@/hooks/useNoteUIContext';
 import createSkiaPath from '@/utils/functions/skia/createSkiaPath';
 import findClosestDrawObjectToPoint from '@/utils/functions/skia/findClosestSkiaObjectToPoint';
 import findSkiaObjectsInRect from '@/utils/functions/skia/findSkiaObjectsInRect';
@@ -27,7 +27,7 @@ export default function skiaDrawGesture() {
           const {
             skColor,
             skSize,
-            skPathType: pathType
+            skPathPropType: pathType
           } = skiaDrawContext.state;
           skiaDrawContext.commands.addSkiaObject(
             createSkiaPath(e.x, e.y, skColor, skSize, pathType)

@@ -1,8 +1,8 @@
-import { SkiaDrawContextType } from '@/utils/types/skia/skiaDrawTypes';
+import { SkiaDrawContextProps } from '@/utils/types/skia/skiaDrawProps';
 import { useContext } from 'react';
 import { SkiaDrawContext } from './useSkiaDrawProvider';
 
-export const useSkiaDrawContext = (): SkiaDrawContextType => {
+export const useSkiaDrawContext = (): SkiaDrawContextProps => {
   const skiaDrawingContext = useContext(SkiaDrawContext);
 
   // The context object obtained from the hook SHOULD NOT be null or undefined
