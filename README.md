@@ -5,14 +5,17 @@
 ## Planned Features
 
 - Accessibility tools:
-  - Built-in AAC communicator.
+  - Built-in AAC (Alternative and Augmented Communication) keyboard that is customisable for each student.
   - Colourblind-friendly contrast filters.
   - Dyslexia-friendly text font styles.
+  - Text-to-speech for all content.
 
 - Content can be freely reorganised.
 - Support for handwritten notes.
 - Words can be linked to other pieces of revision content.
 - Full offline support.
+- Teachers can personalise content for each specific student.
+- Available for Android, iOS and web (desktop versions are planned at a later date)
 
 ## Project Motivation
 
@@ -47,6 +50,6 @@ If you are running this on an Android or iOS device, the canvaskist.wasm file is
 
 ## Contribute
 
-If you have any suggestions or further improvements you would like to make to this project, please feel free to send me a PR with the changes you recommend to dreamdev.tommy.2000@outlook.com. You are also more than welcome to make a fork of this repo if you want to make your changes there. Thanks! 😀👍
+If you have any suggestions or further improvements you would like to make to this project, please feel free to send me a PR with the changes you recommend to <dreamdev.tommy.2000@outlook.com>. You are also more than welcome to make a fork of this repo if you want to make your changes there. Thanks! 😀👍
 
-> _一緒に夢に飛び込みましょう (Let’s dive into our dreams together)_> _一緒に夢に飛び込みましょう (Let’s dive into our dreams together)_
+> _一緒に夢に飛び込みましょう (Let’s dive into our dreams together)_
