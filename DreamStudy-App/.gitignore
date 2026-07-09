@@ -54,3 +54,6 @@ app-example
 # Env security tokens -- DO NOT COMMIT THIS!
 .env.local
 .env
+
+# Ignore build error logs
+/errors

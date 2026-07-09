@@ -9,12 +9,13 @@ import {
 import { scheduleOnRN } from 'react-native-worklets';
 import AnimatedFlashScrollCard from '../animatedFlashScrollCard';
 import { Card } from '../card';
-import { SkiaCarouselPreview } from './skiaCarouselPreview';
+import { SkiaNotePreview } from './skiaNotePreview';
 
-export interface SkiaNoteCarouselStackProps<T = unknown> {
+export interface SkiaNotepadProps<T = unknown> {
   noteStyle?: StyleProp<ViewStyle>;
   noteData: T[];
   renderNote: (item: T, index: number) => React.ReactNode;
+  noteKeyExtractor: ((item: any) => string) | undefined;
   noteWidth?: number;
   noteHeight?: number;
   noteStackOffset?: number;
@@ -25,10 +26,11 @@ export interface SkiaNoteCarouselStackProps<T = unknown> {
   paginatorBackground?: React.ReactNode;
 }
 
-export function SkiaNoteCarouselStack<T>({
+export function SkiaNotepad<T>({
   noteStyle,
   noteData,
   renderNote,
+  noteKeyExtractor,
   noteWidth = 200,
   noteHeight = 180,
   noteStackOffset = 8,
@@ -36,7 +38,7 @@ export function SkiaNoteCarouselStack<T>({
   paginatorDots = 5,
   paginatorDotSize = 10,
   paginatorSpacing = 10
-}: SkiaNoteCarouselStackProps<T>) {
+}: SkiaNotepadProps<T>) {
   const { width: screenWidth } = useWindowDimensions();
 
   const carouselScrollX = useSharedValue(0);
@@ -65,22 +67,17 @@ export function SkiaNoteCarouselStack<T>({
 
   return (
     <Card>
-      {/* Map notes to the preview components and render each note as children */}
-      {noteData.map((item, index) => (
-        <SkiaCarouselPreview
-          cardIndex={index}
-          cardScrollX={carouselScrollX}
-          cardHeight={noteHeight}
-          cardWidth={noteWidth}
-          totalNumOfCards={noteData.length}>
-          {renderNote(item, index)}
-        </SkiaCarouselPreview>
-      ))}
-
       <AnimatedFlashScrollCard
         data={noteData}
+        keyExtractor={noteKeyExtractor}
         renderItem={() => (
-          <Card style={{ height: noteHeight, width: noteWidth }} />
+          <Card
+            style={{
+              height: noteHeight,
+              width: noteWidth,
+              backgroundColor: 'blue'
+            }}
+          />
         )}
         snapToInterval={noteWidth}
         horizontal
@@ -100,6 +97,17 @@ export function SkiaNoteCarouselStack<T>({
           paddingTop: noteStackOffset * 3
         }} // Change padding according to the note width and scale accordingly
       />
+      {/* Map notes to the preview components and render each note as children */}
+      {noteData.map((item, index) => (
+        <SkiaNotePreview
+          cardIndex={noteData.length - 1 - index}
+          cardScrollX={carouselScrollX}
+          cardHeight={noteHeight}
+          cardWidth={noteWidth}
+          totalNumOfCards={noteData.length}>
+          {renderNote(item, index)}
+        </SkiaNotePreview>
+      ))}
     </Card>
   );
 }

@@ -19,11 +19,11 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Gesture } from 'react-native-gesture-handler';
 
 import { Card } from '@/components/card';
-import { SkiaGestureCard } from '@/components/skia/skiaGestureCard';
+import { SkiaGestureCanvas } from '@/components/skia/skiaGestureCanvas';
 import { SkiaSelectionFrame } from './skiaSelectionFrame';
 import { NoteToolbarCard } from './toolbar/noteToolbarCard';
 
-export default function SkiaNote({ style }: CanvasProps) {
+export default function SkiaNoteCreator({ style }: CanvasProps) {
   // Create debug state values for tracking gestures
   const [gestureBegin, setGestureBegin] = useState<undefined | string>();
   const [gestureUpdate, setGestureUpdate] = useState<undefined | string>();
@@ -143,7 +143,7 @@ export default function SkiaNote({ style }: CanvasProps) {
   );
   return (
     <Card>
-      <SkiaGestureCard
+      <SkiaGestureCanvas
         ref={canvasRef}
         style={style}
         gesture={panGesture}
@@ -173,7 +173,7 @@ export default function SkiaNote({ style }: CanvasProps) {
             />
           </Group>
         ) : null}
-      </SkiaGestureCard>
+      </SkiaGestureCanvas>
       <NoteToolbarCard canvasRefObject={canvasRef} canvasStyle={style} />
     </Card>
   );

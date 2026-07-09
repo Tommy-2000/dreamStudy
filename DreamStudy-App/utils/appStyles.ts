@@ -239,6 +239,7 @@ export const cardStyles = StyleSheet.create(theme => ({
   },
   revisionCard: {
     borderRadius: 20,
+    shadowRadius: 20,
     padding: 20,
     flex: 1,
     backgroundColor: theme.colors.accents.storm

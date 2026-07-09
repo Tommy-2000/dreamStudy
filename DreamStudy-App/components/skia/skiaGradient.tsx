@@ -5,17 +5,17 @@
  */
 
 import {
-  CanvasProps,
-  Fill,
-  Shader,
-  Skia,
-  SkRuntimeEffect,
-  useClock
+    CanvasProps,
+    Fill,
+    Shader,
+    Skia,
+    SkRuntimeEffect,
+    useClock
 } from '@shopify/react-native-skia';
 import React from 'react';
 import { useWindowDimensions } from 'react-native';
 import { useDerivedValue } from 'react-native-reanimated';
-import { SkiaCard } from './skiaCard';
+import { SkiaCanvas } from './skiaCanvas';
 
 const skiaSource = Skia.RuntimeEffect.Make(`
 uniform vec3 uResolution;
@@ -80,10 +80,10 @@ export default function SkiaGradient({
   }, [clock, width, height]);
 
   return (
-    <SkiaCard style={style}>
+    <SkiaCanvas style={style}>
       <Fill>
         <Shader source={skiaSource as SkRuntimeEffectNN} uniforms={uniforms} />
       </Fill>
-    </SkiaCard>
+    </SkiaCanvas>
   );
 }
