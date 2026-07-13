@@ -8,7 +8,7 @@ import {
 } from 'react-native-reanimated';
 import { AnimatedCard } from '../animatedCard';
 
-export interface SkiaCarouselPreviewProps extends PropsWithChildren {
+export interface SkiaNotePreviewProps extends PropsWithChildren {
   cardIndex: number;
   cardScrollX: SharedValue<number>;
   cardHeight: number;
@@ -16,14 +16,14 @@ export interface SkiaCarouselPreviewProps extends PropsWithChildren {
   totalNumOfCards: number;
 }
 
-export const SkiaCarouselPreview = ({
+export const SkiaNotePreview = ({
   cardIndex,
   cardScrollX,
   cardHeight,
   cardWidth,
   totalNumOfCards,
   children
-}: SkiaCarouselPreviewProps) => {
+}: SkiaNotePreviewProps) => {
   const extendedInputRange = [
     (cardIndex - 2) * cardWidth,
     (cardIndex - 1) * cardWidth,

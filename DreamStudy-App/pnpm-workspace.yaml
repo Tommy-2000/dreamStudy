@@ -1,11 +1,16 @@
+# Only these packages are trustworthy to run postbuild scripts
+
 allowBuilds:
   '@react-native-ama/core': true
   '@sentry/cli': true
   '@shopify/react-native-skia': true
   unrs-resolver: true
 
+# Security measures to prevent any npm supply chain attacks from infecting transitive dependencies
 blockExoticSubdeps: true
-
 minimumReleaseAge: 1440
-
+# Disable trustPolicy if it is too strict with required packages
 # trustPolicy: no-downgrade
+
+# This is required for native packages like Reanimated and Skia that rely on CMake to build on Windows
+nodeLinker: hoisted

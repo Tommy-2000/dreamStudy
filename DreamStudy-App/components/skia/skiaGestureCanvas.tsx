@@ -10,9 +10,9 @@ import {
   TouchAction,
   UserSelect
 } from 'react-native-gesture-handler/lib/typescript/handlers/gestureHandlerCommon';
-import { SkiaCard } from './skiaCard';
+import { SkiaCanvas } from './skiaCanvas';
 
-export function SkiaGestureCard({
+export function SkiaGestureCanvas({
   ref,
   style,
   gesture,
@@ -35,9 +35,9 @@ export function SkiaGestureCard({
           userSelect={userSelect}
           enableContextMenu={enableContextMenu}
           touchAction={touchAction}>
-          <SkiaCard ref={ref} style={style}>
+          <SkiaCanvas ref={ref} style={style}>
             {children}
-          </SkiaCard>
+          </SkiaCanvas>
         </GestureDetector>
       </GestureHandlerRootView>
     </>

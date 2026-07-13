@@ -1,0 +1,42 @@
+{
+  "cli": {
+    "version": ">= 20.5.1",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true, // Include development tools for both Android and iOS development builds
+      "distribution": "internal",
+      "node": "24.18.0",
+      "android": {
+        "resourceClass": "medium"
+      },
+      "ios": {
+        "resourceClass": "medium",
+        "simulator": true
+      },
+      "pnpm": "11.10.0"
+    },
+    "development-compile": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "node": "24.18.0",
+      "android": {
+        "resourceClass": "medium"
+      },
+      "ios": {
+        "resourceClass": "medium"
+      },
+      "pnpm": "11.10.0"
+    },
+    "preview": {
+      "distribution": "internal"
+    },
+    "production": {
+      "autoIncrement": true
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

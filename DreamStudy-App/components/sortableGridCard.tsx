@@ -9,7 +9,11 @@ import { Card } from './card';
 export function SortableGridDropIndicator({
   style
 }: DropIndicatorComponentProps) {
-  return <Card style={[style, { borderRadius: '100%' }]} />;
+  return (
+    <Card
+      style={[style, { borderRadius: '100%', backgroundColor: '#000000' }]}
+    />
+  );
 }
 
 export default function SortableGridCard({
@@ -26,6 +30,7 @@ export default function SortableGridCard({
       renderItem={renderItem}
       keyExtractor={keyExtractor}
       DropIndicatorComponent={SortableGridDropIndicator}
+      dropIndicatorStyle={{ backgroundColor: '#000000' }}
       columns={columns}
       rowGap={rowGap}
       columnGap={columnGap}

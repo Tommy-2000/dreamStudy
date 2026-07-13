@@ -1,8 +1,5 @@
 import { cardStyles } from '@/utils/appStyles';
-import {
-    AnimatedFlashList,
-    FlashListProps
-} from '@shopify/flash-list';
+import { AnimatedFlashList, FlashListProps } from '@shopify/flash-list';
 import { Card } from './card';
 
 export default function AnimatedFlashScrollCard({
@@ -10,6 +7,7 @@ export default function AnimatedFlashScrollCard({
   numColumns,
   contentContainerStyle,
   initialScrollIndex,
+  keyExtractor,
   renderItem
 }: FlashListProps<any>) {
   return (
@@ -19,6 +17,7 @@ export default function AnimatedFlashScrollCard({
         numColumns={numColumns}
         contentContainerStyle={contentContainerStyle}
         initialScrollIndex={initialScrollIndex}
+        keyExtractor={keyExtractor}
         renderItem={renderItem}
       />
     </Card>

@@ -1,10 +1,17 @@
 import { AnimatedPressableOptions } from 'pressto';
+import {
+  AccessibilityProps,
+  ColorValue,
+  StyleProp,
+  ViewStyle
+} from 'react-native';
+import { AnimatedStyle } from 'react-native-reanimated';
 
-export interface MaterialButtonProps {
+export interface MaterialButtonProps extends AccessibilityProps {
   onPress?: ((options: AnimatedPressableOptions) => void) | undefined;
-  style?: {};
-  title?: string;
-  accessibilityHint: string;
+  style: StyleProp<AnimatedStyle<StyleProp<ViewStyle>>>;
+  title?: string | undefined;
+  color?: ColorValue | undefined;
 }
 
 export interface MaterialIconButtonProps extends MaterialButtonProps {
@@ -343,9 +350,6 @@ export interface MaterialIconButtonProps extends MaterialButtonProps {
   iconSize: number;
 }
 
-export interface ToolbarButtonProps {
-  onPress?: (options: AnimatedPressableOptions) => void | undefined;
-  style?: {};
+export interface ToolbarButtonProps extends MaterialIconButtonProps {
   selected?: boolean;
-  accessibilityHint: string;
 }
