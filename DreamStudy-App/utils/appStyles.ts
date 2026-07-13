@@ -1,9 +1,12 @@
 import type { CalendarTheme } from '@marceloterreiro/flash-calendar';
-import { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
-import { DrawerNavigationOptions } from '@react-navigation/drawer';
-import { HeaderOptions } from '@react-navigation/elements';
 import { Tabs } from 'expo-router';
-import Drawer from 'expo-router/drawer';
+import {
+  Drawer,
+  DrawerNavigationOptions,
+  DrawerNavigationProp
+} from 'expo-router/drawer';
+import { BottomTabNavigationOptions } from 'expo-router/js-tabs';
+import { ParamListBase, RouteProp, Theme } from 'expo-router/react-navigation';
 import { Platform } from 'react-native';
 import { StyleSheet, withUnistyles } from 'react-native-unistyles';
 import { calendarCardTokenColours as calendarTokenColours } from './appTokenColours';
@@ -118,12 +121,23 @@ export const supportScreenStyles = StyleSheet.create({
 
 // React Navigation Options
 
-export const tabScreenOptions: BottomTabNavigationOptions & HeaderOptions = {
+export const tabScreenOptions: BottomTabNavigationOptions = {
   tabBarPosition: 'right',
   headerShown: false
 };
 
-export const drawerScreenOptions: DrawerNavigationOptions & HeaderOptions = {
+export const drawerScreenOptions:
+  | DrawerNavigationOptions
+  | ((props: {
+      route: RouteProp<ParamListBase, string>;
+      navigation: DrawerNavigationProp<
+        ParamListBase,
+        string,
+        string | undefined
+      >;
+      theme: Theme;
+    }) => DrawerNavigationOptions)
+  | undefined = {
   drawerPosition: 'right',
   drawerType: 'front',
   drawerStatusBarAnimation: 'fade',
@@ -147,7 +161,7 @@ export const RootTabs = withUnistyles(Tabs, theme => ({
       backgroundColor: theme.colors.foreground
     },
     tabBarIconStyle: {
-      color: theme.colors.foreground
+      backgroundColor: theme.colors.foreground
     }
   }
 }));
